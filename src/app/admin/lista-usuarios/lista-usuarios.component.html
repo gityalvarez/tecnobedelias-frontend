@@ -1,0 +1,45 @@
+<!--<nav  class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav">
+          <li class="active"  ><a>Home</a></li>
+    
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+    
+        </ul>
+      </div>
+</nav>
+-->
+<div class="container">
+
+  <table class="table table-striped">
+      <thead>
+          
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Operacion </th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let usuario of usuarios">
+              
+              <td>{{usuario.nombre}}</td>
+              <td>{{usuario.apellido}}</td>
+              <td>{{usuario.username}}</td>
+              <td>{{usuario.email}}</td>
+              
+              <td><button class="btn btn-danger" (click)="borrarUsuario(usuario)" confirm="Are you sure?" >Delete</button>
+                  <button class="btn btn-primary" (click)="updateUser(user)">Edit</button></td>
+
+          </tr>
+      </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="agregarUsuario()" >Nuevo</button>
+</div>
+
+
+<!--
+    <button class="btn btn-danger" (click)="openConfirmationDialog()">Delete</button>
+    (click)="borrarUsuario(usuario)"-->

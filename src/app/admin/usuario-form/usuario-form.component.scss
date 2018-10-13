@@ -1,0 +1,7 @@
+.money {
+    max-width: 300px;
+    
+    &.ng-invalid:not(.ng-pristine) {
+      border-color: red;
+    }
+  }
