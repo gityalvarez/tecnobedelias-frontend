@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   private username :string;
+  private rol : string;
+  
   constructor(private tokenStorage:TokenStorage,private router:Router) { }
 
   ngOnInit() {
     this.username = this.tokenStorage.getSubject().toUpperCase();
     console.log('el username es '+this.username);
+    this.rol = this.tokenStorage.getRole();
   }
 
 

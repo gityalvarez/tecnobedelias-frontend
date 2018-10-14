@@ -1,3 +1,21 @@
-<p>
-  lista-carreras works!
-</p>
+<div class="container">
+
+  <table class="table table-striped">
+      <thead>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Creditos</th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let carrera of carreras">
+              
+              <td>{{carrera.nombre}}</td>
+              <td>{{carrera.descripcion}}</td>
+              <td>{{carrera.creditosMinimos}}</td>              
+              <td><button class="btn btn-danger" (click)="borrarCarrera(carrera)" confirm="Are you sure?" >Delete</button>
+                  <button class="btn btn-primary" (click)="editarCarrera(carrera)">Edit</button></td>
+          </tr>
+      </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="agregarCarrera()" >Nuevo</button>
+</div>

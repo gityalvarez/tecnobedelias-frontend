@@ -1,3 +1,21 @@
-<p>
-  lista-asignaturas works!
-</p>
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+            <th>Nombre</th>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let asignatura of asignaturas">
+                
+                <td>{{asignatura.nombre}}</td>
+                <td>{{asignatura.codigo}}</td>
+                <td>{{asignatura.descripcion}}</td>              
+                <td><button class="btn btn-danger" (click)="borrarAsignatura(asignatura)" confirm="Are you sure?" >Delete</button>
+                    <button class="btn btn-primary" (click)="editarAsignatura(asignatura)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="agregarAsignatura()" >Nuevo</button>
+  </div>

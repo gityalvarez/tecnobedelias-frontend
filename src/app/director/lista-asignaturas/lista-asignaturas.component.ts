@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Asignatura } from 'src/app/_models/Asignatura';
+import { AsignaturaService } from 'src/app/_services/asignatura.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-asignaturas',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaAsignaturasComponent implements OnInit {
 
-  constructor() { }
+  public asignaturas:Asignatura[];
+
+  constructor(private asignaturaService:AsignaturaService,private router:Router) { }
 
   ngOnInit() {
+    this.asignaturaService.getAsignaturas().subscribe(
+      (asignaturas)=>{
+        this.asignaturas=asignaturas;
+      },(error)=>{
+        console.log(error);
+      },
+    );
   }
+
+  agregarAsignatura(){
+    let asignatura = new Asignatura();
+    this.asignaturaService.set(asignatura);
+    this.router.navigate(['director/asignatura-form']);
+  }  
 
 }

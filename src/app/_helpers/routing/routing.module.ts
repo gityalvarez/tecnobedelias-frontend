@@ -9,6 +9,8 @@ import { HomeComponent } from '../../admin/home/home.component';
 import { UsuarioFormComponent } from '../../admin/usuario-form/usuario-form.component';
 import { HomeDirectorComponent } from '../../director/home-director/home-director.component';
 import { HomeStudentComponent } from '../../student/home-student/home-student.component';
+import { CarreraFormComponent } from 'src/app/director/carrera-form/carrera-form.component';
+import { AsignaturaFormComponent } from 'src/app/director/asignatura-form/asignatura-form.component';
 
 const routes: Routes = [
 
@@ -39,6 +41,8 @@ const routes: Routes = [
     } 
   },
   { path: 'administrador/usuario-form', component: UsuarioFormComponent},
+  { path: 'director/carrera-form', component: CarreraFormComponent},
+  { path: 'director/asignatura-form', component: AsignaturaFormComponent},
 
 
 

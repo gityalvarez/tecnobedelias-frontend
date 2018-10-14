@@ -25,6 +25,10 @@ import { ListaAsignaturasComponent } from './director/lista-asignaturas/lista-as
 import { HomeStudentComponent } from './student/home-student/home-student.component';
 import { BodyStudentComponent } from './student/body-student/body-student.component';
 import { CedulaPipe } from './_pipes/CedulaPipe';
+import { CarreraFormComponent } from './director/carrera-form/carrera-form.component';
+import { CarreraService } from './_services/carrera.service';
+import { AsignaturaService } from './_services/asignatura.service';
+import { AsignaturaFormComponent } from './director/asignatura-form/asignatura-form.component';
 //import { JwtHelperService } from '@auth0/angular-jwt';
 
 
@@ -43,7 +47,9 @@ import { CedulaPipe } from './_pipes/CedulaPipe';
     ListaAsignaturasComponent,
     HomeStudentComponent,
     BodyStudentComponent,
-    CedulaPipe
+    CedulaPipe,
+    CarreraFormComponent,
+    AsignaturaFormComponent
     
     
   ],
@@ -64,6 +70,8 @@ import { CedulaPipe } from './_pipes/CedulaPipe';
     AuthGuardService,
     RoleGuardService,
     UsuarioService,
+    CarreraService,
+    AsignaturaService,
     TokenStorage,
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

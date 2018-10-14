@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-3">
+                    <h3>Nueva Carrera</h3>
+                    <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" formControlName="nombre" class="form-control" [(ngModel)]="carrera.nombre" [ngClass]="{ 'is-invalid': (submitted || f.nombre.touched) && f.nombre.errors }"/>
+                            <div *ngIf="f.nombre.invalid && (f.nombre.dirty || f.nombre.touched || submitted)  " class="invalid-feedback">
+                                <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label>Descripcion</label>
+                            <input type="text" formControlName="descripcion" class="form-control" [(ngModel)]="carrera.descripcion" [ngClass]="{ 'is-invalid': (submitted || f.descripcion.touched) && f.descripcion.errors }"/>
+                            <div *ngIf="f.descripcion.invalid && (f.descripcion.dirty || f.descripcion.touched || submitted)  " class="invalid-feedback">
+                                <div *ngIf="f.descripcion.errors.required">Nombre es requerido</div>
+                            </div>
+                        </div>
+                        -->
+                        
+                            <label>Descripcion</label>
+                            <textarea formControlName="descripcion" class="form-control" [(ngModel)]="carrera.descripcion"></textarea>
+                        
+                        
+                    
+                        <div class="form-group">
+                            <label>Creditos Minimos</label>
+                            <input type="text" formControlName="creditosMinimos" class="form-control" [(ngModel)]="carrera.creditosMinimos" [ngClass]="{ 'is-invalid': (submitted || f.creditosMinimos.touched) && f.creditosMinimos.errors }"/>
+                            <div *ngIf="f.creditosMinimos.invalid && (f.creditosMinimos.dirty || f.creditosMinimos.touched || submitted)  " class="invalid-feedback">
+                                <div *ngIf="f.creditosMinimos.errors.required">Creditos Minimos es requerido</div>
+                            </div>
+                        </div>
+
+
+                        
+                        <div class="form-group">
+                              <button  class="btn btn-primary ">Agregar</button>
+                            
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
