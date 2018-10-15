@@ -22,6 +22,12 @@ export class AsignaturaService {
     return this.http.post(environment.API+'/asignatura/crear',asignatura);
   }
 
+  borrarAsignatura(asignatura:Asignatura):Observable<any>{
+    console.log('entre al borrarAsignatura del asignaturaService con la asignatura '+asignatura.nombre);
+    return this.http.post(environment.API+'/asignatura/borrar',asignatura); 
+
+  }
+
   
   set(asignatura:Asignatura){
     this.asignatura=asignatura;

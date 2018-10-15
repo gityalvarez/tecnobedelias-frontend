@@ -28,6 +28,19 @@ export class ListaAsignaturasComponent implements OnInit {
     let asignatura = new Asignatura();
     this.asignaturaService.set(asignatura);
     this.router.navigate(['director/asignatura-form']);
-  }  
+  } 
+  
+   
+  borrarCarrera(asignatura){
+    console.log('entre al borrarAsignatura del lista Asignatura con la asignatura '+asignatura.nombre);
+    if(window.confirm('Seguro Quiere eliminar a '+asignatura.nombre+"?")){
+      this.asignaturaService.borrarAsignatura(asignatura).subscribe(
+        (data)=>{
+          console.log('a la vuelta del suscribe');
+          this.asignaturas.splice(this.asignaturas.indexOf(asignatura),1);
+        }
+      );
+    }
+  }
 
 }

@@ -30,4 +30,17 @@ export class ListaCarrerasComponent implements OnInit {
     this.router.navigate(['director/carrera-form']);
   }  
 
+  
+  borrarCarrera(carrera){
+    console.log('entre al borrarCarrera del lista Carreras con la carrera '+carrera.nombre);
+    if(window.confirm('Seguro Quiere eliminar a '+carrera.nombre+"?")){
+      this.carreraService.borrarCarrera(carrera).subscribe(
+        (data)=>{
+          console.log('a la vuelta del suscribe');
+          this.carreras.splice(this.carreras.indexOf(carrera),1);
+        }
+      );
+    }
+  }
+
 }
