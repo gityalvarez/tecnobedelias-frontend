@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Asignatura } from '../_models/Asignatura';
+import { Carrera } from '../_models/Carrera';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,11 @@ export class AsignaturaService {
   getAsignaturas():Observable<any>{
     return this.http.get(environment.API+'/asignatura/listar');
   }
+
+  getAsignaturasFaltantes(carrera:Carrera):Observable<any>{
+    return this.http.get(environment.API+'/carrera/listarFaltantes/'+carrera.nombre);
+  }
+
 
   agregarAsignatura(asignatura:Asignatura):Observable<any>{
     console.log('entre al agregarAsignaturaService con la asignatura '+asignatura.nombre );

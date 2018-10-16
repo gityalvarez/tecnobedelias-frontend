@@ -17,7 +17,7 @@ import { HomeComponent } from './admin/home/home.component';
 import { BodyComponent } from './admin/body/body.component';
 import { ListaUsuariosComponent } from './admin/lista-usuarios/lista-usuarios.component';
 import { UsuarioFormComponent } from './admin/usuario-form/usuario-form.component';
-import { BsDatepickerModule} from 'ngx-bootstrap';
+import { BsDatepickerModule, BsModalService, ModalModule} from 'ngx-bootstrap';
 import { ListaCarrerasComponent } from './director/lista-carreras/lista-carreras.component';
 import { HomeDirectorComponent } from './director/home-director/home-director.component';
 import { BodyDirectorComponent } from './director/body-director/body-director.component';
@@ -29,6 +29,9 @@ import { CarreraFormComponent } from './director/carrera-form/carrera-form.compo
 import { CarreraService } from './_services/carrera.service';
 import { AsignaturaService } from './_services/asignatura.service';
 import { AsignaturaFormComponent } from './director/asignatura-form/asignatura-form.component';
+import { AsignarAsignaturaComponent } from './director/asignar-asignatura/asignar-asignatura.component';
+import { AccordionModule } from 'ngx-bootstrap';
+
 //import { JwtHelperService } from '@auth0/angular-jwt';
 
 
@@ -49,7 +52,8 @@ import { AsignaturaFormComponent } from './director/asignatura-form/asignatura-f
     BodyStudentComponent,
     CedulaPipe,
     CarreraFormComponent,
-    AsignaturaFormComponent
+    AsignaturaFormComponent,
+    AsignarAsignaturaComponent
     
     
   ],
@@ -60,7 +64,9 @@ import { AsignaturaFormComponent } from './director/asignatura-form/asignatura-f
     HttpModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    AccordionModule.forRoot(),
+    ModalModule.forRoot()
     
     
   ],
@@ -72,6 +78,7 @@ import { AsignaturaFormComponent } from './director/asignatura-form/asignatura-f
     UsuarioService,
     CarreraService,
     AsignaturaService,
+    BsModalService,
     TokenStorage,
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

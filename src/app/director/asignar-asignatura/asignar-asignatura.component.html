@@ -1,0 +1,30 @@
+<accordion>
+  <div *ngFor="let carrera of carreras" >
+    <accordion-group heading="{{carrera.nombre}}">      
+      <div *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera;let i = index" >
+        {{asignaturaCarrera.asignatura.nombre}}
+        <button type="button" class="btn btn-danger btn-sm " (click)="eliminarAsignatura(carrera,asignaturaCarrera.asignatura); carrera.asignaturaCarrera.splice(i,1)">Eliminar </button>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm" (click)="openModal(template,carrera)">Agregar </button>
+      <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Agregar Asignatura</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div *ngFor="let asignatura of asignaturas;let i=index">
+              {{asignatura.nombre}}
+              <button type="button" class="btn btn-primary btn-sm"  (click)="agregarAsignatura(carrera,asignatura)">Agregar </button>
+            </div>
+          </div>
+        </ng-template>
+    </accordion-group>
+  </div>
+   
+</accordion>
+
+
+
+<!--;carrera.asignaturaCarrera.push(asignatura.asignaturaCarrera)-->
