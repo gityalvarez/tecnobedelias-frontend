@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AsignaturaFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  private asignatura:Asignatura;
+  public asignatura:Asignatura;
 
   constructor(private formBuilder:FormBuilder,private asignaturaService:AsignaturaService, private router:Router) {
     this.asignatura= new Asignatura();

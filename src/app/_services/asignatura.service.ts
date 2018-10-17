@@ -34,7 +34,7 @@ export class AsignaturaService {
 
   }
 
-  
+
   set(asignatura:Asignatura){
     this.asignatura=asignatura;
   }

@@ -16,7 +16,7 @@ import { Rol } from '../../_models/Rol';
 export class UsuarioFormComponent implements OnInit {  
   registerForm: FormGroup;
   submitted = false;
-  private usuario:Usuario;
+  public usuario:Usuario;
   public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
   roles = ["ADMINISTRADOR","DIRECTOR","FUNCIONARIO","ESTUDIANTE"];
   public rol:Rol;

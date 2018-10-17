@@ -1,4 +1,4 @@
-<accordion>
+<accordion [closeOthers]="true">
   <div *ngFor="let carrera of carreras" >
     <accordion-group heading="{{carrera.nombre}}">      
       <div *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera;let i = index" >

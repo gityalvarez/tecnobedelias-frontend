@@ -1,0 +1,21 @@
+<accordion [closeOthers]="true">
+  
+  <div *ngFor="let carrera of carreras" >
+    <accordion-group heading="{{carrera.nombre}}">      
+      <div *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera;let i = index" >
+        <button type="button" class="btn btn-primary btn-sm" (click)="seleccionarAsignatura(asignaturaCarrera.asignatura,carrera)">{{asignaturaCarrera.asignatura.nombre}}</button>
+        <p></p>
+        <!--<button type="button" class="btn btn-danger btn-sm " (click)="eliminarAsignatura(carrera,asignaturaCarrera.asignatura); carrera.asignaturaCarrera.splice(i,1)">Eliminar </button>-->
+      </div>
+      <p-pickList sourceHeader="Previas" targetHeader="Previas a Agregar" [source]="previas" [target]="posibles">
+          <ng-template let-previa pTemplate="item">
+              <div class="ui-helper-clearfix">
+                  <div >{{previa.asignatura.nombre}}</div>
+              </div>
+          </ng-template>
+      </p-pickList>
+    </accordion-group>
+  </div>
+   
+</accordion>
+

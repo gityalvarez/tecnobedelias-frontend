@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 export class AsignarAsignaturaComponent implements OnInit {
   modalRef: BsModalRef;
 
-  items = ['Item 1', 'Item 2', 'Item 3'];
   carreras : Carrera[];
   carrera : Carrera;
   asignaturas : Asignatura[];

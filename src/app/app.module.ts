@@ -31,6 +31,10 @@ import { AsignaturaService } from './_services/asignatura.service';
 import { AsignaturaFormComponent } from './director/asignatura-form/asignatura-form.component';
 import { AsignarAsignaturaComponent } from './director/asignar-asignatura/asignar-asignatura.component';
 import { AccordionModule } from 'ngx-bootstrap';
+import { AsignarPreviaComponent } from './director/asignar-previa/asignar-previa.component';
+import { PickListModule } from 'primeng/picklist';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ResetComponent } from './shared/reset/reset.component';
 
 //import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -53,7 +57,9 @@ import { AccordionModule } from 'ngx-bootstrap';
     CedulaPipe,
     CarreraFormComponent,
     AsignaturaFormComponent,
-    AsignarAsignaturaComponent
+    AsignarAsignaturaComponent,
+    AsignarPreviaComponent,
+    ResetComponent
     
     
   ],
@@ -66,7 +72,9 @@ import { AccordionModule } from 'ngx-bootstrap';
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     BsDatepickerModule.forRoot(),
     AccordionModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    PickListModule,
+    BrowserAnimationsModule
     
     
   ],

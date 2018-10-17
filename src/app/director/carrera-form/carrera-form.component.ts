@@ -14,7 +14,7 @@ import { Carrera } from 'src/app/_models/Carrera';
 export class CarreraFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  private carrera:Carrera;
+  public carrera:Carrera;
   
 
   constructor(private formBuilder:FormBuilder,private carreraService:CarreraService, private router:Router) { 

@@ -41,6 +41,13 @@ export class CarreraService {
 
   }
 
+  
+  getPrevias(asignatura:Asignatura,carrera:Carrera):Observable<any>{
+    console.log('entre al getPrevias del asignaturaService con la asignatura '+asignatura.nombre+' y la carrera '+carrera.nombre);
+    return this.http.get(environment.API+'/carrera/listarpreviaturas',{params:{'carrera':carrera.nombre,'asignatura':asignatura.nombre}}); 
+
+  }
+
   set(carrera:Carrera){
     this.carrera=carrera;
   }

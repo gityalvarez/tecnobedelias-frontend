@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  private username :string;
-  private rol : string;
+  public username :string;
+  public rol : string;
   
   constructor(private tokenStorage:TokenStorage,private router:Router) { }
 

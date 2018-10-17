@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { Usuario } from '../_models/Usuario';
 import { Observable } from 'rxjs';
 import {environment} from '../../environments/environment'
@@ -24,6 +24,11 @@ export class UsuarioService {
   agregarUsuario(rol:string,usuario:Usuario):Observable<any>{
     console.log('entre al agregarUsuarioService con el usuario '+usuario.username + ' y el pass '+usuario.password, 'y el rol '+rol);
     return this.http.post(environment.API+'/usuario/crear/'+rol,usuario);
+  }
+
+  cambiarPassword(password,resetToken):Observable<any>{
+    console.log('entre al cambiarPassword con el password '+password);
+    return this.http.get(environment.API+'/usuario/reset',{params:{'resetToken': resetToken,'password':password}});
   }
 
   set(usuario:Usuario){
