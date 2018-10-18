@@ -15,9 +15,11 @@ export class AsignarPreviaComponent implements OnInit {
 
   carreras : Carrera[];
   carrera : Carrera;
+  asignatura : Asignatura;
   asignaturas : Asignatura[];
-  previas:Asignatura_Carrera[];
-  posibles:Asignatura_Carrera[];
+  previas : Asignatura[];
+  previasPosibles : Asignatura[];
+
 
   constructor(private carreraService:CarreraService, private asignaturaService:AsignaturaService) { }
 
@@ -32,16 +34,55 @@ export class AsignarPreviaComponent implements OnInit {
     );    
   }
 
-  seleccionarAsignatura(asignatura:Asignatura,carrera:Carrera){
-    this.carreraService.getPrevias(asignatura,carrera).subscribe(
+  cargarAsignaturas(carrera:Carrera){
+    this.carrera = carrera;
+    this.carreraService.getAsignaturas(carrera).subscribe(
+      (asignaturas)=>{
+        this.asignaturas = asignaturas;
+        }
+    );
+  }
+
+  cargarPrevias(asignatura:Asignatura){
+    this.asignatura = asignatura;
+    this.carreraService.getPrevias(asignatura,this.carrera).subscribe(
       (previas)=>{
         this.previas=previas;
-        this.posibles = carrera.asignaturaCarrera;
       },(error)=>{
         console.log(error);
       },
     );
+    this.carreraService.getPreviasPosibles(asignatura,this.carrera).subscribe(
+      (previasPosibles)=>{
+        this.previasPosibles=previasPosibles;
+      },(error)=>{
+        console.log(error);
+      },
+    );    
+  }
 
+  agregarPrevia(asignaturaPrevia:Asignatura){
+    console.log(this.carrera.nombre,this.asignatura.nombre,asignaturaPrevia.nombre);
+    this.carreraService.asignarPrevia(this.carrera,this.asignatura,asignaturaPrevia).subscribe(
+      (data)=>{
+        if (data){
+          console.log("agregue la asignatura  a la carrera");
+          alert("La asignatura "+asignaturaPrevia.nombre+" fue asignada correctamente"); 
+        }else{
+          console.log("no se pudo agregar la asignatura");
+          alert("La asignatura "+asignaturaPrevia.nombre+" no pudo ser asignada correctamente"); 
+          this.previas.splice(this.previas.indexOf(asignaturaPrevia),1);
+          this.previasPosibles.push(asignaturaPrevia)
+        }
+
+      }
+    );
+  }
+
+
+  onMoveToSource(event){
+    console.log('entre al onMoveToSource con '+this.carrera.nombre +' y asignatura '+event.items[0]);
+    this.agregarPrevia(event.items[0]);
   }
 
   

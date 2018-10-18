@@ -29,6 +29,14 @@ export class CarreraService {
 
   }
 
+  getAsignaturas(carrera:Carrera):Observable<any>{
+    return this.http.get(environment.API+'/carrera/listarasignaturas/'+carrera.nombre)
+  }
+
+  getAsignaturasFaltantes(carrera:Carrera):Observable<any>{
+    return this.http.get(environment.API+'/carrera/listarasignaturasfaltantes/'+carrera.nombre);
+  }
+
   asignarAsignatura(carrera:Carrera,asignatura:Asignatura){
     console.log("entre al asignarAsignatura del carreraSErvice con la carrera "+carrera.nombre+" y la asignatura "+asignatura.nombre);
     return this.http.get(environment.API+'/carrera/asignarasignatura',{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre}});
@@ -47,6 +55,18 @@ export class CarreraService {
     return this.http.get(environment.API+'/carrera/listarpreviaturas',{params:{'carrera':carrera.nombre,'asignatura':asignatura.nombre}}); 
 
   }
+
+  getPreviasPosibles(asignatura:Asignatura,carrera:Carrera):Observable<any>{
+    console.log('entre al getPreviasPosibles del carreraService con la asignatura '+asignatura.nombre+' y la carrera '+carrera.nombre);
+    return this.http.get(environment.API+'/carrera/listarpreviaturasposibles',{params:{'carrera':carrera.nombre,'asignatura':asignatura.nombre}}); 
+
+  }
+
+  asignarPrevia(carrera:Carrera,asignatura:Asignatura,asignaturaPrevia:Asignatura){
+    console.log("entre al asignarPrevia del carreraSErvice con la carrera "+carrera.nombre+"  la asignatura "+asignatura.nombre+" y la previa "+asignaturaPrevia.nombre);
+    return this.http.get(environment.API+'/carrera/asignarprevia',{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre,'asignaturaPrevia':asignaturaPrevia.nombre}});
+  }
+
 
   set(carrera:Carrera){
     this.carrera=carrera;

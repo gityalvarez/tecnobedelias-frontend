@@ -40,13 +40,18 @@ export class CarreraFormComponent implements OnInit {
         return;
     }
 
-    alert('Se creara la Carrera\n\n' + JSON.stringify(this.registerForm.value['nombre']));
+    
     console.log('on submitt con el usuario '+this.carrera.nombre);
     
     this.carreraService.agregarCarrera(this.carrera).subscribe(
       (carrera)=>{
-        console.log(carrera);
-        this.router.navigate(['director']);
+        if (carrera){
+          alert('Se creo la Carrera\n\n' + JSON.stringify(this.registerForm.value['nombre']));
+          this.router.navigate(['director']);
+        }else{
+          alert('No se pudo crear la  Carrera\n\n' + JSON.stringify(this.registerForm.value['nombre']));
+          this.registerForm.reset();
+        }
       }
     )
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { matchOtherValidator } from 'src/app/_helpers/match-other-validator';
 import { UsuarioService } from 'src/app/_services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset',
@@ -15,7 +15,7 @@ export class ResetComponent implements OnInit {
   password:String;
   passwordConfirm:String;
   token:String;
-  constructor(private formBuilder: FormBuilder, private usuarioService:UsuarioService,private activatedRoute:ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService:UsuarioService,private activatedRoute:ActivatedRoute,private route:Router) { }
 
   ngOnInit() {
     this.token = this.activatedRoute.snapshot.queryParamMap.get('token');
@@ -38,6 +38,7 @@ export class ResetComponent implements OnInit {
     this.usuarioService.cambiarPassword(this.password,this.token).subscribe(
       (data)=>{
         console.log(data);
+        this.route.navigate(['']);
       },
       (error)=>{console.log(error)}
     );

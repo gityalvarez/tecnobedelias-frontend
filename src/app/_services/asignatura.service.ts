@@ -18,9 +18,7 @@ export class AsignaturaService {
     return this.http.get(environment.API+'/asignatura/listar');
   }
 
-  getAsignaturasFaltantes(carrera:Carrera):Observable<any>{
-    return this.http.get(environment.API+'/carrera/listarFaltantes/'+carrera.nombre);
-  }
+  
 
 
   agregarAsignatura(asignatura:Asignatura):Observable<any>{
