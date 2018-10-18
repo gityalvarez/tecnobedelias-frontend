@@ -6,7 +6,7 @@
         <div *ngFor="let asignatura of asignaturas;let i = index" >
           <accordion-group heading="{{asignatura.nombre}}" (isOpenChange)='cargarPrevias(asignatura)'>
             <p-pickList [responsive]="true" sourceHeader="Previas" targetHeader="Previas a Agregar" [source]="previas" [target]="previasPosibles"
-                    (onMoveToSource)="onMoveToSource($event)">
+                    (onMoveToSource)="onMoveToSource($event)" (onMoveToTarget)="onMoveToTarget($event)">
                 <ng-template let-previa pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div >{{previa.nombre}}</div>

@@ -79,10 +79,33 @@ export class AsignarPreviaComponent implements OnInit {
     );
   }
 
+  eliminarPrevia(asignaturaPrevia:Asignatura){
+    console.log(this.carrera.nombre,this.asignatura.nombre,asignaturaPrevia.nombre);
+    this.carreraService.desasignarPrevia(this.carrera,this.asignatura,asignaturaPrevia).subscribe(
+      (data)=>{
+        if (data){
+          console.log("elimine la asignatura  a la carrera");
+          alert("La asignatura "+asignaturaPrevia.nombre+" fue desasignada correctamente"); 
+        }else{
+          console.log("no se pudo agregar la asignatura");
+          alert("La asignatura "+asignaturaPrevia.nombre+" no pudo ser desasignada correctamente"); 
+          this.previasPosibles.splice(this.previasPosibles.indexOf(asignaturaPrevia),1);
+          this.previas.push(asignaturaPrevia)
+        }
+
+      }
+    );
+  }
+
 
   onMoveToSource(event){
     console.log('entre al onMoveToSource con '+this.carrera.nombre +' y asignatura '+event.items[0]);
     this.agregarPrevia(event.items[0]);
+  }
+
+  onMoveToTarget(event){
+    console.log('entre al onMoveToTarget con '+this.carrera.nombre +' y asignatura '+event.items[0]);
+    this.eliminarPrevia(event.items[0]);
   }
 
   

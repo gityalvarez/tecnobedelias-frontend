@@ -67,6 +67,13 @@ export class CarreraService {
     return this.http.get(environment.API+'/carrera/asignarprevia',{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre,'asignaturaPrevia':asignaturaPrevia.nombre}});
   }
 
+  desasignarPrevia(carrera:Carrera,asignatura:Asignatura,asignaturaPrevia:Asignatura){
+    console.log("entre al desasignarPrevia del carreraSErvice con la carrera "+carrera.nombre+"  la asignatura "+asignatura.nombre+" y la previa "+asignaturaPrevia.nombre);
+    return this.http.get(environment.API+'/carrera/desasignarprevia',{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre,'asignaturaPrevia':asignaturaPrevia.nombre}});
+  }
+
+  
+
 
   set(carrera:Carrera){
     this.carrera=carrera;
