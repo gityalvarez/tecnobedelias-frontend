@@ -64,8 +64,16 @@ export class AsignarAsignaturaComponent implements OnInit {
     //this.items.push(`Item ${this.items.length + 1}`);
     this.carreraService.desasignarAsignatura(carrera,asignatura).subscribe(
       (data)=>{
-        console.log("elimine la asignatura  a la carrera");
-        alert("La asignatura "+asignatura.nombre+" fue desasignada correctamente");  
+        if(data){
+          console.log("elimine la asignatura  a la carrera");
+          alert("La asignatura "+asignatura.nombre+" fue desasignada correctamente"); 
+
+        }else{
+          console.log("no se pudo eliminar la asignatura  a la carrera");
+          alert("La asignatura "+asignatura.nombre+" no pude ser desasignada correctamente");
+          this.asignaturasFaltantes.splice(this.asignaturasFaltantes.indexOf(asignatura),1);
+          this.asignaturas.push(asignatura);
+        }
       }
     );
   }

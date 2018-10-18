@@ -92,7 +92,6 @@ export class AsignarPreviaComponent implements OnInit {
           this.previasPosibles.splice(this.previasPosibles.indexOf(asignaturaPrevia),1);
           this.previas.push(asignaturaPrevia)
         }
-
       }
     );
   }

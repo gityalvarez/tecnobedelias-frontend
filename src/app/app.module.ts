@@ -35,6 +35,7 @@ import { AsignarPreviaComponent } from './director/asignar-previa/asignar-previa
 import { PickListModule } from 'primeng/picklist';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ResetComponent } from './shared/reset/reset.component';
+import { GrafoComponent } from './director/grafo/grafo.component';
 
 //import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -59,7 +60,8 @@ import { ResetComponent } from './shared/reset/reset.component';
     AsignaturaFormComponent,
     AsignarAsignaturaComponent,
     AsignarPreviaComponent,
-    ResetComponent
+    ResetComponent,
+    GrafoComponent
     
     
   ],

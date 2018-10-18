@@ -28,7 +28,7 @@ export class AsignaturaService {
 
   borrarAsignatura(asignatura:Asignatura):Observable<any>{
     console.log('entre al borrarAsignatura del asignaturaService con la asignatura '+asignatura.nombre);
-    return this.http.post(environment.API+'/asignatura/borrar',asignatura); 
+    return this.http.get(environment.API+'/asignatura/borrar',{params:{'asignatura': asignatura.nombre}}); 
 
   }
 

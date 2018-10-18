@@ -12,10 +12,12 @@
               <td>{{carrera.nombre}}</td>
               <td>{{carrera.descripcion}}</td>
               <td>{{carrera.creditosMinimos}}</td>              
-              <td><button class="btn btn-danger" (click)="borrarCarrera(carrera)" confirm="Are you sure?" >Delete</button>
-                  <button class="btn btn-primary" (click)="editarCarrera(carrera)">Edit</button></td>
+              <td *ngIf="esDirector"><button class="btn btn-danger" (click)="borrarCarrera(carrera)" confirm="Are you sure?" >Borrar</button></td>
+              <td *ngIf="esDirector"><button class="btn btn-primary" (click)="editarCarrera(carrera)">Editar</button></td>
           </tr>
       </tbody>
   </table>
-  <button class="btn btn-primary" (click)="agregarCarrera()" >Nuevo</button>
+  <div *ngIf="esDirector">
+      <button class="btn btn-primary" (click)="agregarCarrera()" >Nuevo</button>
+  </div>
 </div>

@@ -25,7 +25,7 @@ export class CarreraService {
 
   borrarCarrera(carrera:Carrera):Observable<any>{
     console.log('entre al borrarCarrera del carreraService con la carrera '+carrera.nombre);
-    return this.http.post(environment.API+'/carrera/borrar',carrera); 
+    return this.http.post(environment.API+'/carrera/borrar',{params:{'carrera': carrera.nombre}}); 
 
   }
 
