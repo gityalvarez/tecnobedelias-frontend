@@ -11,13 +11,46 @@
               
               <td>{{carrera.nombre}}</td>
               <td>{{carrera.descripcion}}</td>
-              <td>{{carrera.creditosMinimos}}</td>              
-              <td *ngIf="esDirector"><button class="btn btn-danger" (click)="borrarCarrera(carrera)" confirm="Are you sure?" >Borrar</button></td>
-              <td *ngIf="esDirector"><button class="btn btn-primary" (click)="editarCarrera(carrera)">Editar</button></td>
-          </tr>
+              <td>{{carrera.creditosMinimos}}</td>
+              <div *ngIf="esDirector">
+                  <td><button class="btn btn-danger" (click)="borrarCarrera(carrera)" confirm="Are you sure?" >Borrar</button></td>
+                  <td><button class="btn btn-primary" (click)="editarCarrera(carrera)">Editar</button></td>
+              </div> 
+              <div *ngIf="esEstudiante">
+                    <td><button class="btn btn-danger" (click)="desistirACarrera(carrera)">Desistir</button></td>
+                    <td><button class="btn btn-primary" (click)="inscripcionACarrera(carrera)">Inscribir</button></td>
+                                  
+              </div>
+            </tr>
       </tbody>
   </table>
   <div *ngIf="esDirector">
       <button class="btn btn-primary" (click)="agregarCarrera()" >Nuevo</button>
   </div>
 </div>
+
+
+
+
+
+<!--
+
+ <div *ngFor="let carreraEstudiante of carrerasEstudiante;let i=index">
+                      <td *ngIf="(carreraEstudiante.nombre === carrera.nombre)" ><button class="btn btn-danger" (click)="desistirACarrera(carrera)">Desistir</button></td>
+
+                      <td *ngIf="i==largo"><button class="btn btn-primary" (click)="inscripcionACarrera(carrera)">Inscribir</button></td>
+
+                  </div>        
+
+
+
+<div  *ngIf="esEstudiante">
+                <div *ngFor="let carrera2 of carrerasEstudiante">
+                        <td *ngIf="(carrera.nombre == carrera2.nombre);else (noinscripto = true)"><button class="btn btn-danger" (click)="desistirACarrera(carrera)">Desistir</button></td>
+                </div>
+                <td><button *ngIf="noinscripto" class="btn btn-primary" (click)="inscripcionACarrera(carrera)">Inscribir</button></td>                 
+              </div>
+
+
+
+-->

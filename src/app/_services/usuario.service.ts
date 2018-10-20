@@ -15,6 +15,10 @@ export class UsuarioService {
     return this.http.get(environment.API+'/usuario/listar');
   }
 
+  getEstudiante():Observable<any>{
+    return this.http.get(environment.API+'/usuario/estudiante');
+  }
+
   borrarUsuario(usuario:Usuario):Observable<any>{
     console.log('entre al borrarUsuario del usuarioService con el usuario '+usuario.username);
     return this.http.post(environment.API+'/usuario/borrar',usuario); 

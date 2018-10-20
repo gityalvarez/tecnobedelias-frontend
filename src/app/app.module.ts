@@ -36,6 +36,9 @@ import { PickListModule } from 'primeng/picklist';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ResetComponent } from './shared/reset/reset.component';
 import { GrafoComponent } from './director/grafo/grafo.component';
+import { InscripcionService } from './_services/inscripcion.service';
+import { ListaCursosComponent } from './student/lista-cursos/lista-cursos.component';
+import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.component';
 
 //import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -61,7 +64,9 @@ import { GrafoComponent } from './director/grafo/grafo.component';
     AsignarAsignaturaComponent,
     AsignarPreviaComponent,
     ResetComponent,
-    GrafoComponent
+    GrafoComponent,
+    ListaCursosComponent,
+    ListaExamenesComponent
     
     
   ],
@@ -90,6 +95,7 @@ import { GrafoComponent } from './director/grafo/grafo.component';
     AsignaturaService,
     BsModalService,
     TokenStorage,
+    InscripcionService,
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true },

@@ -1,0 +1,31 @@
+
+<accordion [closeOthers]="true">
+    <div *ngFor="let carrera of carreras" >
+        <accordion-group  heading="{{carrera.nombre}}">
+            <div class="center" *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera">
+              <accordion [closeOthers]="true">
+                <accordion-group  heading="{{asignaturaCarrera.asignatura.nombre}}">                  
+                    <div class="container">
+                        <table class="table table-striped" >
+                            <thead>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let examenes of asignaturaCarrera.asignatura.examenes">
+                                    
+                                    <td>{{examen.fecha}}</td>
+                                    <td>{{examen.hora}}</td>
+                                    <div >
+                                        <td><button class="btn btn-primary" (click)="inscripcionAExamen(examen)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>           
+                </accordion-group>
+              </accordion>
+            </div>
+          </accordion-group>
+        </div>
+      </accordion>

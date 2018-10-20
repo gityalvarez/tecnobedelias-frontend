@@ -1,0 +1,73 @@
+
+<accordion [closeOthers]="true">
+  <div *ngFor="let carrera of carreras" >
+      <accordion-group heading="{{carrera.nombre}}">
+          <div class="center" *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera">
+            <accordion [closeOthers]="true">
+              <accordion-group heading="{{asignaturaCarrera.asignatura.nombre}}">                  
+                  <div class="container" >
+                      <table class="table table-striped" >
+                          <thead>
+                              <th>Anio</th>
+                              <th>Semestre</th>
+                              <th>Inicio</th>
+                              <th>Fin</th>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let curso of asignaturaCarrera.asignatura.cursos">
+                                  
+                                  <td>{{curso.anio}}</td>
+                                  <td>{{curso.semestre}}</td>
+                                  <td>{{curso.inicio}}</td>
+                                  <td>{{curso.fin}}</td>
+                                  <div >
+                                      <td><button class="btn btn-primary" (click)="inscripcionACurso(curso)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
+                                  </div>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>           
+              </accordion-group>
+            </accordion>
+          </div>
+        </accordion-group>
+      </div>
+    </accordion>
+    
+    
+  <!--  
+    <div *ngFor="let curso of asignaturaCarrera.asignatura.cursos">
+        {{curso.id}} - {{curso.anio}} - {{curso.semestre}}
+    </div>
+  -->
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+
+  <accordion [closeOthers]="true">
+      <div *ngFor="let carrera of carreras" >
+        <accordion-group heading="{{carrera.nombre}}" (isOpenChange)='cargarAsignaturas(carrera)'>  
+          <div class="center" >
+  
+            
+          </div>  
+        </accordion-group>
+      </div>   
+    </accordion>
+
+-->
