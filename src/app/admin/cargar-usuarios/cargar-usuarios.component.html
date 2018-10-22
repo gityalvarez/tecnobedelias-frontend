@@ -1,0 +1,23 @@
+<body>
+<div class="Block">
+  <input class="btn btn-success"  type="file" id="csv" (change)="onFileChange($event)" #fileInput>
+  <p></p>
+  <button class="btn btn-info" (click)="openModal(template)">Usuarios a Agregar</button>
+  <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Usuarios a Agregar</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p *ngFor="let data of resultado">
+              {{data[0]}}-{{data[1]}}-{{data[3]}}{{data[4]}}-{{data[7]}}          
+          </p>        
+      </div>      
+  </ng-template>
+  <p></p>
+  
+  <button cla (click)="cargar()">Cargar</button>
+</div>
+</body>

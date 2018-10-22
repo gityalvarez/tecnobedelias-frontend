@@ -5,8 +5,6 @@ import { AsignaturaService } from 'src/app/_services/asignatura.service';
 import { Asignatura } from 'src/app/_models/Asignatura';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
-import { Asignatura_Carrera } from 'src/app/_models/Asignatura_Carrera';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
   selector: 'app-asignar-asignatura',

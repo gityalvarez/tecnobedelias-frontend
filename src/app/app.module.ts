@@ -39,7 +39,10 @@ import { GrafoComponent } from './director/grafo/grafo.component';
 import { InscripcionService } from './_services/inscripcion.service';
 import { ListaCursosComponent } from './student/lista-cursos/lista-cursos.component';
 import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.component';
+import { CargarUsuariosComponent } from './admin/cargar-usuarios/cargar-usuarios.component';
+import { PapaParseModule } from 'ngx-papaparse';
 
+  
 //import { JwtHelperService } from '@auth0/angular-jwt';
 
 
@@ -66,7 +69,8 @@ import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.
     ResetComponent,
     GrafoComponent,
     ListaCursosComponent,
-    ListaExamenesComponent
+    ListaExamenesComponent,
+    CargarUsuariosComponent
     
     
   ],
@@ -81,7 +85,8 @@ import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.
     AccordionModule.forRoot(),
     ModalModule.forRoot(),
     PickListModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PapaParseModule
     
     
   ],
