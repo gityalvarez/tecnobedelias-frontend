@@ -17,7 +17,7 @@ import { HomeComponent } from './admin/home/home.component';
 import { BodyComponent } from './admin/body/body.component';
 import { ListaUsuariosComponent } from './admin/lista-usuarios/lista-usuarios.component';
 import { UsuarioFormComponent } from './admin/usuario-form/usuario-form.component';
-import { BsDatepickerModule, BsModalService, ModalModule} from 'ngx-bootstrap';
+import { BsDatepickerModule, BsModalService, ModalModule, AlertModule} from 'ngx-bootstrap';
 import { ListaCarrerasComponent } from './director/lista-carreras/lista-carreras.component';
 import { HomeDirectorComponent } from './director/home-director/home-director.component';
 import { BodyDirectorComponent } from './director/body-director/body-director.component';
@@ -41,6 +41,7 @@ import { ListaCursosComponent } from './student/lista-cursos/lista-cursos.compon
 import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.component';
 import { CargarUsuariosComponent } from './admin/cargar-usuarios/cargar-usuarios.component';
 import { PapaParseModule } from 'ngx-papaparse';
+import { FileUploadModule } from 'primeng/fileupload';
 
   
 //import { JwtHelperService } from '@auth0/angular-jwt';
@@ -84,10 +85,11 @@ import { PapaParseModule } from 'ngx-papaparse';
     BsDatepickerModule.forRoot(),
     AccordionModule.forRoot(),
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     PickListModule,
     BrowserAnimationsModule,
-    PapaParseModule
-    
+    PapaParseModule,
+    FileUploadModule 
     
   ],
   providers: [

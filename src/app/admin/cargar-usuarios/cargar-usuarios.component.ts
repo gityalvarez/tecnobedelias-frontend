@@ -25,6 +25,26 @@ export class CargarUsuariosComponent implements OnInit {
   ngOnInit() {  
   }
 
+  onSelect(event){
+    let reader = new FileReader();
+    if(event.files && event.files.length > 0) {
+      console.log("entre despues del")
+      let file = event.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        console.log("estoy en el onload "+reader.result);
+        this.papa.parse(file,{
+          header: false,
+          skipEmptyLines: true,
+          complete: (result) => {
+            this.resultado = result.data
+          }
+        })
+      };
+    }
+
+  }
+  /*
   onFileChange(event) {
     let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0) {
@@ -42,9 +62,9 @@ export class CargarUsuariosComponent implements OnInit {
       };
     }
   }
-  
+  */
 
-  cargar(){
+ myUploader(event){
     console.log("entre al cargar")
     this.resultado.forEach(element => {
       let usuario:Usuario = new Usuario();
@@ -66,15 +86,36 @@ export class CargarUsuariosComponent implements OnInit {
       );
     });
   } 
-  
-  
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
 
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+openModal(template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template);
+}
+*/
 
 /*
 

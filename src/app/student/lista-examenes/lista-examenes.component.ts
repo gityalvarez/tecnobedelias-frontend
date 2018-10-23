@@ -22,6 +22,7 @@ export class ListaExamenesComponent implements OnInit {
   examen : Examen;
   username:string;
   estudiante:Object;
+  examenesEstudiante:Examen[];
 
   constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
     private usuarioService:UsuarioService,private tokenStorage:TokenStorage) { }
@@ -37,17 +38,48 @@ export class ListaExamenesComponent implements OnInit {
         console.log('obtuve el estudiante '+estudiante.username)
       }
     );
+
+    this.inscripcionService.consultaExamen().subscribe(
+      (examenes)=>{
+        this.examenesEstudiante = examenes
+      }
+    )
   }
 
   inscripcionAExamen(examen:Examen){
     this.inscripcionService.inscripcionAExamen(examen).subscribe(
       (data)=>{
         alert("La inscripcion al examen fue exitosa")
+        this.examenesEstudiante.push(examen)
       },
       (error)=>{
         alert("No se pudo inscribir al examen")
       }
     )
+  }
+
+  desistirACurso(examen:Examen){
+    this.inscripcionService.desistirAExamen(examen).subscribe(
+      (data)=>{
+        alert("Pudo desistir del examen correctamente")
+        this.examenesEstudiante.splice(this.examenesEstudiante.indexOf(examen),1)
+      },
+      (error)=>{
+        alert("No pudo desistir del curso")
+      }
+    )
+  }
+
+  estaInscripto(examen){
+    let esta = false
+    this.examenesEstudiante.forEach(element=>{
+      if (element.id == examen.id){
+        esta =true
+      }
+    })
+    if(esta){
+      return true
+    }else return false
   }
 
 }

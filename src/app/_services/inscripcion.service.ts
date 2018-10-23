@@ -27,12 +27,28 @@ export class InscripcionService {
     return this.http.get(environment.API+'/curso/listar');
   }
 
+  consultaCursos():Observable<any>{
+    return this.http.get(environment.API+'/inscripcion/curso/consulta')
+  }
+
   inscripcionACurso(curso:Curso):Observable<any>{
     return this.http.get(environment.API+'/inscripcion/curso',{params : {'curso':curso.id.toString()}})
   }
 
+  desistirACurso(curso:Curso):Observable<any>{
+    return this.http.get(environment.API+'/inscripcion/desistircurso',{params : {'curso':curso.id.toString()}})
+  }
+
+  consultaExamen():Observable<any>{
+    return this.http.get(environment.API+'/inscripcion/examen/consulta')
+  }
+
   inscripcionAExamen(examen:Examen):Observable<any>{
     return this.http.get(environment.API+'/inscripcion/examen',{params:{'examen':examen.id.toString()}});
+  }
+
+  desistirAExamen(examen:Examen):Observable<any>{
+    return this.http.get(environment.API+'/inscripcion/desistirexamen',{params:{'examen':examen.id.toString()}});
   }
 
 }

@@ -12,13 +12,16 @@
                                 <th>Hora</th>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let examenes of asignaturaCarrera.asignatura.examenes">
+                                <tr *ngFor="let examen of asignaturaCarrera.asignatura.examenes">
                                     
                                     <td>{{examen.fecha}}</td>
                                     <td>{{examen.hora}}</td>
-                                    <div >
-                                        <td><button class="btn btn-primary" (click)="inscripcionAExamen(examen)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
-                                    </div>
+                                    <div *ngIf="!(estaInscripto(examen)); else desistir">
+                                            <td><button class="btn btn-primary" (click)="inscripcionAExamen(examen)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
+                                        </div>
+                                        <ng-template #desistir>
+                                              <td><button class="btn btn-danger" (click)="desistirAExamen(examen)" confirm="Seguro que desea desistir?" >Desistir</button></td>
+                                        </ng-template>
                                 </tr>
                             </tbody>
                         </table>

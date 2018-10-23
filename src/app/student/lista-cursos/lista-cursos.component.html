@@ -20,9 +20,12 @@
                                   <td>{{curso.semestre}}</td>
                                   <td>{{curso.inicio}}</td>
                                   <td>{{curso.fin}}</td>
-                                  <div >
+                                  <div *ngIf="!(estaInscripto(curso)); else desistir">
                                       <td><button class="btn btn-primary" (click)="inscripcionACurso(curso)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
                                   </div>
+                                  <ng-template #desistir>
+                                        <td><button class="btn btn-danger" (click)="desistirACurso(curso)" confirm="Seguro que desea desistir?" >Desistir</button></td>
+                                  </ng-template>
                               </tr>
                           </tbody>
                       </table>
