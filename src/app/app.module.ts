@@ -42,6 +42,7 @@ import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.
 import { CargarUsuariosComponent } from './admin/cargar-usuarios/cargar-usuarios.component';
 import { PapaParseModule } from 'ngx-papaparse';
 import { FileUploadModule } from 'primeng/fileupload';
+import * as go from 'gojs'
 
   
 //import { JwtHelperService } from '@auth0/angular-jwt';
