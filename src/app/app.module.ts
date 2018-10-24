@@ -45,8 +45,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import * as go from 'gojs'
 
   
-//import { JwtHelperService } from '@auth0/angular-jwt';
-
 
 @NgModule({
   declarations: [

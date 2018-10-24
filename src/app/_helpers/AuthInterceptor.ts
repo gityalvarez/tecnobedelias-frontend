@@ -10,7 +10,6 @@ export class AuthInterceptor implements HttpInterceptor{
     constructor(private tokenStorage:TokenStorage){}
 
     intercept(request:HttpRequest<any>,next:HttpHandler):Observable<HttpEvent<any>>{
-        console.log('entre al interceptor');
         if(this.tokenStorage.getToken()){
             request = request.clone({
                 setHeaders:{

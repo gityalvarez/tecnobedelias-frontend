@@ -20,9 +20,7 @@ export class AuthService {
   }
 
   isAuthenticated():boolean{
-    console.log('entro al is authenticated');
     const token = this.tokenStorage.getToken();
-    console.log('consegui el token '+token);
     if (token!==null){
       return !this.tokenStorage.isTokenExpired(token);
     }

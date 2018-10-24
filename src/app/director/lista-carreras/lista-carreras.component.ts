@@ -18,7 +18,7 @@ export class ListaCarrerasComponent implements OnInit {
   public esDirector:boolean = false;
   public esEstudiante:boolean = false;
   public username: string;
-  //public carrerasEstudiante : Carrera[];
+  public carrerasEstudiante : Carrera[];
   //public estudiante: Usuario;
   //public largo:number;
 
@@ -30,13 +30,11 @@ export class ListaCarrerasComponent implements OnInit {
     if (this.tokenStorage.getRole() == "estudiante"){
       this.esEstudiante = true;
       this.username = this.tokenStorage.getSubject();
-      /*this.usuarioService.getEstudiante().subscribe(
+      this.usuarioService.getEstudiante().subscribe(
         (estudiante)=>{
           this.carrerasEstudiante = estudiante.carreras;
-          this.largo = this.carrerasEstudiante.length;
-          this.estudiante = estudiante;
         }
-      )*/
+      )
     }
     this.carreraService.getCarreras().subscribe(
       (carreras)=>{
@@ -55,13 +53,11 @@ export class ListaCarrerasComponent implements OnInit {
 
   
   borrarCarrera(carrera){
-    console.log('entre al borrarCarrera del lista Carreras con la carrera '+carrera.nombre);
     if(window.confirm('Seguro Quiere eliminar a '+carrera.nombre+"?")){
       this.carreraService.borrarCarrera(carrera).subscribe(
         (data)=>{
           if(data){
             alert("La carrera "+carrera.nombre+ " se elimino correctamente");
-            console.log('a la vuelta del suscribe');
             this.carreras.splice(this.carreras.indexOf(carrera),1);
           }else{
             alert("No se pudo eliminar la carrera "+carrera.nombre);
@@ -73,12 +69,11 @@ export class ListaCarrerasComponent implements OnInit {
 
   inscripcionACarrera(carrera:Carrera){
     if(window.confirm('Seguro Quiere Inscribirse a la carrera '+carrera.nombre+"?")){
-      console.log("Usuario "+this.username)
       this.inscripcionService.inscripcionACarrera(carrera).subscribe(
         (data)=>{
           if(data){
             alert("Se ha inscripto correctamente a la carrera "+carrera.nombre);
-            console.log('a la vuelta del suscribe');
+            this.carrerasEstudiante.push(carrera)
           }else{
             alert("No se pudo inscribir a la carrera "+carrera.nombre);
           }
@@ -90,12 +85,11 @@ export class ListaCarrerasComponent implements OnInit {
 
   desistirACarrera(carrera:Carrera){
     if(window.confirm('Seguro Quiere desistir a la carrera '+carrera.nombre+"?")){
-      console.log("Usuario "+this.username)
       this.inscripcionService.desistirACarrera(carrera).subscribe(
         (data)=>{
           if(data){
             alert("Ha desistido correctamente de la carrera "+carrera.nombre);
-            console.log('a la vuelta del suscribe');
+            this.carrerasEstudiante.splice(this.carrerasEstudiante.indexOf(carrera),1);
           }else{
             alert("No pudo desistir de la carrera "+carrera.nombre);
           }
@@ -104,6 +98,22 @@ export class ListaCarrerasComponent implements OnInit {
 
     } 
 
+  }
+
+  estaInscripto(carrera){
+    let esta = false
+    if (this.carrerasEstudiante){
+
+      this.carrerasEstudiante.forEach(element=>{
+        if (element.nombre == carrera.nombre){
+          esta =true
+        }
+      })
+      if(esta){
+        return true
+      }else return false
+
+    }
   }
 
 }

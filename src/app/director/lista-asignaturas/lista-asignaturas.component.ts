@@ -18,7 +18,6 @@ export class ListaAsignaturasComponent implements OnInit {
 
   ngOnInit() {
     this.esDirector = (this.tokenStorage.getRole() == "director");
-    console.log(this.esDirector);
     this.asignaturaService.getAsignaturas().subscribe(
       (asignaturas)=>{
         this.asignaturas=asignaturas;
@@ -36,13 +35,11 @@ export class ListaAsignaturasComponent implements OnInit {
   
    
   borrarAsignatura(asignatura){
-    console.log('entre al borrarAsignatura del lista Asignatura con la asignatura '+asignatura.nombre);
     if(window.confirm('Seguro Quiere eliminar a '+asignatura.nombre+"?")){
       this.asignaturaService.borrarAsignatura(asignatura).subscribe(
         (data)=>{
           if(data){
             alert("Se eliminó la asignatura "+asignatura.nombre+" correctamente");
-            console.log('a la vuelta del suscribe');
             this.asignaturas.splice(this.asignaturas.indexOf(asignatura),1);           
           }else{
             alert("No se pudo eliminar la carrera "+asignatura.nombre);

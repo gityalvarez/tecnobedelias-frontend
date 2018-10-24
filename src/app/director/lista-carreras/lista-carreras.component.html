@@ -17,9 +17,14 @@
                   <td><button class="btn btn-primary" (click)="editarCarrera(carrera)">Editar</button></td>
               </div> 
               <div *ngIf="esEstudiante">
-                    <td><button class="btn btn-danger" (click)="desistirACarrera(carrera)">Desistir</button></td>
-                    <td><button class="btn btn-primary" (click)="inscripcionACarrera(carrera)">Inscribir</button></td>
-                                  
+                  <div *ngIf="estaInscripto(carrera); else inscripcion">
+                      <td><button class="btn btn-danger" (click)="desistirACarrera(carrera)">Desistir</button></td>
+                  </div>    
+                      <ng-template #inscripcion>
+                          <td><button class="btn btn-primary" (click)="inscripcionACarrera(carrera)">Inscribir</button></td>
+                      </ng-template>
+
+                  
               </div>
             </tr>
       </tbody>

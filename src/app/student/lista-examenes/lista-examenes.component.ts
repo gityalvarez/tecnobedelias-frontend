@@ -35,7 +35,6 @@ export class ListaExamenesComponent implements OnInit {
       (estudiante)=>{
         this.estudiante = estudiante;
         this.carreras = estudiante.carreras;
-        console.log('obtuve el estudiante '+estudiante.username)
       }
     );
 

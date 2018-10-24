@@ -1,38 +1,60 @@
 
-<accordion [closeOthers]="true">
+<accordion [closeOthers]="true"  >
   <div *ngFor="let carrera of carreras" >
       <accordion-group heading="{{carrera.nombre}}">
+          <accordion [closeOthers]="true">
           <div class="center" *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera">
-            <accordion [closeOthers]="true">
               <accordion-group heading="{{asignaturaCarrera.asignatura.nombre}}">                  
                   <div class="container" >
-                      <table class="table table-striped" >
+                      <table class="table table-striped table-responsive">
                           <thead>
                               <th>Anio</th>
                               <th>Semestre</th>
                               <th>Inicio</th>
                               <th>Fin</th>
+                              <th></th>
+                              <th></th>
                           </thead>
                           <tbody>
                               <tr *ngFor="let curso of asignaturaCarrera.asignatura.cursos">
                                   
                                   <td>{{curso.anio}}</td>
                                   <td>{{curso.semestre}}</td>
-                                  <td>{{curso.inicio}}</td>
-                                  <td>{{curso.fin}}</td>
+                                  <td>{{curso.fechaInicio | date}}</td>
+                                  <td>{{curso.fechaFin | date}}</td>
+                                  
                                   <div *ngIf="!(estaInscripto(curso)); else desistir">
                                       <td><button class="btn btn-primary" (click)="inscripcionACurso(curso)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
                                   </div>
                                   <ng-template #desistir>
-                                        <td><button class="btn btn-danger" (click)="desistirACurso(curso)" confirm="Seguro que desea desistir?" >Desistir</button></td>
+                                      <td><button class="btn btn-danger" (click)="desistirACurso(curso)" confirm="Seguro que desea desistir?" >Desistir</button></td>
                                   </ng-template>
-                              </tr>
+                                  <td><button class="btn btn-success" (click)="openModal(template,curso.horarios)" >Horarios</button></td>
+                                  <ng-template #template>
+                                        <div class="modal-header">
+                                          <h4 class="modal-title pull-left">Horarios</h4>
+                                          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div *ngFor="let horario of curso.horarios">
+                                            {{horario.dia}}    {{horario.horaInicio}}     {{horario.horaFin}}
+                                          </div>
+                                        </div>
+                                      </ng-template>
+                             
+                             
+                             
+                             
+                             
+                                </tr>
                           </tbody>
                       </table>
                   </div>           
               </accordion-group>
+            </div>
             </accordion>
-          </div>
         </accordion-group>
       </div>
     </accordion>

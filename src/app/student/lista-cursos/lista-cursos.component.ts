@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { InscripcionService } from 'src/app/_services/inscripcion.service';
 import { TokenStorage } from 'src/app/_helpers/TokenStorage';
 import { Curso } from 'src/app/_models/Curso';
@@ -7,7 +7,7 @@ import { Usuario } from 'src/app/_models/Usuario';
 import { CarreraService } from 'src/app/_services/carrera.service';
 import { Carrera } from 'src/app/_models/Carrera';
 import { Asignatura } from 'src/app/_models/Asignatura';
-import { element } from '@angular/core/src/render3/instructions';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -15,6 +15,7 @@ import { element } from '@angular/core/src/render3/instructions';
   styleUrls: ['./lista-cursos.component.css']
 })
 export class ListaCursosComponent implements OnInit {
+  modalRef: BsModalRef;
 
 carreras : Carrera[];
 carrera : Carrera;
@@ -25,9 +26,10 @@ curso : Curso;
 username:string;
 estudiante:Object;
 cursosEstudiante:Curso[];
-
+customClass: string = 'panel-success';
 constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
-                     private usuarioService:UsuarioService,private tokenStorage:TokenStorage) { }
+                     private usuarioService:UsuarioService,private tokenStorage:TokenStorage,
+                     private modalService:BsModalService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getRole() == "estudiante"){
@@ -72,16 +74,26 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
     )
   }
 
+  
+
   estaInscripto(curso){
     let esta = false
-    this.cursosEstudiante.forEach(element=>{
-      if (element.id == curso.id){
-        esta =true
-      }
-    })
-    if(esta){
-      return true
-    }else return false
+    if(this.cursosEstudiante){
+
+      this.cursosEstudiante.forEach(element=>{
+        if (element.id == curso.id){
+          esta =true
+        }
+      })
+      if(esta){
+        return true
+      }else return false
+
+    }
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 

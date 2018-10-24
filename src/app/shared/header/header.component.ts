@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.username = this.tokenStorage.getSubject().toUpperCase();
-    console.log('el username es '+this.username);
     this.rol = this.tokenStorage.getRole();
   }
 

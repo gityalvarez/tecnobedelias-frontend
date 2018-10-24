@@ -16,8 +16,8 @@ import { ResetComponent } from 'src/app/shared/reset/reset.component';
 
 const routes: Routes = [
 
-  
   { path: '', component: LoginComponent},
+
   { 
     path: 'administrador', 
     component: HomeComponent,
@@ -45,7 +45,10 @@ const routes: Routes = [
   { path: 'administrador/usuario-form', component: UsuarioFormComponent},
   { path: 'director/carrera-form', component: CarreraFormComponent},
   { path: 'director/asignatura-form', component: AsignaturaFormComponent},
-  { path: 'reset', component: ResetComponent}
+  { path: 'reset', component: ResetComponent},
+
+    { path: '**', redirectTo: '' }
+
 ];
 
 
