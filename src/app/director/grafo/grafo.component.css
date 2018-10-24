@@ -1,3 +1,12 @@
-.diagramStyling {
-  background-color: lightgrey;
+.diagrama {
+  height: 240px;
+  width: 100%;
+  border: 2px solid grey;
+  margin-bottom: 4px;
+}
+#carrera {
+  background: lightgrey;
+}
+#asignatura {
+  background: whitesmoke;
 }
