@@ -25,6 +25,7 @@ import { ListaAsignaturasComponent } from './director/lista-asignaturas/lista-as
 import { HomeStudentComponent } from './student/home-student/home-student.component';
 import { BodyStudentComponent } from './student/body-student/body-student.component';
 import { CedulaPipe } from './_pipes/CedulaPipe';
+import { FilterPipe } from './_pipes/FilterPipe'
 import { CarreraFormComponent } from './director/carrera-form/carrera-form.component';
 import { CarreraService } from './_services/carrera.service';
 import { AsignaturaService } from './_services/asignatura.service';
@@ -62,6 +63,7 @@ import * as go from 'gojs'
     HomeStudentComponent,
     BodyStudentComponent,
     CedulaPipe,
+    FilterPipe,
     CarreraFormComponent,
     AsignaturaFormComponent,
     AsignarAsignaturaComponent,

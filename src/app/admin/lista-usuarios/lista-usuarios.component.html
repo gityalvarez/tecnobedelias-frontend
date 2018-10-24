@@ -1,17 +1,8 @@
-<!--<nav  class="navbar navbar-inverse">
-    <div class="container-fluid">
 
-        <ul class="nav navbar-nav">
-          <li class="active"  ><a>Home</a></li>
-    
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-    
-        </ul>
-      </div>
-</nav>
--->
 <div class="container" >
+
+  <input type="text" class="form-control" name="searchString" placeholder="Buscar..." [(ngModel)]="searchString">
+
 
   <table class="table table-striped">
       <thead >
@@ -22,8 +13,8 @@
           <th>Email</th>
           <th>Operacion </th>
       </thead>
-      <tbody>
-          <tr *ngFor="let usuario of usuarios">
+      <tbody id="test">
+          <tr *ngFor="let usuario of usuarios | filter : ['nombre','apellido','username', 'email'] : searchString; let i = index">
               
               <td>{{usuario.nombre}}</td>
               <td>{{usuario.apellido}}</td>
@@ -38,8 +29,3 @@
   </table>
   <button class="btn btn-primary" (click)="agregarUsuario()" >Nuevo</button>
 </div>
-
-
-<!--
-    <button class="btn btn-danger" (click)="openConfirmationDialog()">Delete</button>
-    (click)="borrarUsuario(usuario)"-->
