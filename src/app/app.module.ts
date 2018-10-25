@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import{HttpModule}   from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { LoginComponent } from './shared/login/login.component';
@@ -25,7 +25,7 @@ import { ListaAsignaturasComponent } from './director/lista-asignaturas/lista-as
 import { HomeStudentComponent } from './student/home-student/home-student.component';
 import { BodyStudentComponent } from './student/body-student/body-student.component';
 import { CedulaPipe } from './_pipes/CedulaPipe';
-import { FilterPipe } from './_pipes/FilterPipe'
+import { FilterPipe } from './_pipes/FilterPipe';
 import { CarreraFormComponent } from './director/carrera-form/carrera-form.component';
 import { CarreraService } from './_services/carrera.service';
 import { AsignaturaService } from './_services/asignatura.service';
@@ -34,7 +34,7 @@ import { AsignarAsignaturaComponent } from './director/asignar-asignatura/asigna
 import { AccordionModule } from 'ngx-bootstrap';
 import { AsignarPreviaComponent } from './director/asignar-previa/asignar-previa.component';
 import { PickListModule } from 'primeng/picklist';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResetComponent } from './shared/reset/reset.component';
 import { GrafoComponent } from './director/grafo/grafo.component';
 import { InscripcionService } from './_services/inscripcion.service';
@@ -43,10 +43,13 @@ import { ListaExamenesComponent } from './student/lista-examenes/lista-examenes.
 import { CargarUsuariosComponent } from './admin/cargar-usuarios/cargar-usuarios.component';
 import { PapaParseModule } from 'ngx-papaparse';
 import { FileUploadModule } from 'primeng/fileupload';
-import * as go from 'gojs'
 import { DialogModule } from 'primeng/dialog';
-
-  
+import { FullCalendarModule } from 'ng-fullcalendar';
+import { CalendarioComponent } from './student/calendario/calendario.component';
+import { HelloComponent } from './student/calendario/hello.component';
+import { EventService } from './student/calendario/event.service';
+import * as $ from 'jquery';
+import * as go from 'gojs';
 
 @NgModule({
   declarations: [
@@ -74,9 +77,9 @@ import { DialogModule } from 'primeng/dialog';
     ListaCursosComponent,
     ListaExamenesComponent,
     CargarUsuariosComponent,
-    
-    
-    
+    CalendarioComponent,
+    HelloComponent
+
   ],
   imports: [
     BrowserModule,
@@ -93,8 +96,9 @@ import { DialogModule } from 'primeng/dialog';
     BrowserAnimationsModule,
     PapaParseModule,
     FileUploadModule,
-    DialogModule
-    
+    DialogModule,
+    FullCalendarModule
+
   ],
   providers: [
     AuthInterceptor,
@@ -110,6 +114,7 @@ import { DialogModule } from 'primeng/dialog';
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true },
+    EventService
     ],
   bootstrap: [AppComponent]
 })
