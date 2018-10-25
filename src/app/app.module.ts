@@ -44,6 +44,7 @@ import { CargarUsuariosComponent } from './admin/cargar-usuarios/cargar-usuarios
 import { PapaParseModule } from 'ngx-papaparse';
 import { FileUploadModule } from 'primeng/fileupload';
 import * as go from 'gojs'
+import { DialogModule } from 'primeng/dialog';
 
   
 
@@ -72,7 +73,8 @@ import * as go from 'gojs'
     GrafoComponent,
     ListaCursosComponent,
     ListaExamenesComponent,
-    CargarUsuariosComponent
+    CargarUsuariosComponent,
+    
     
     
   ],
@@ -90,7 +92,8 @@ import * as go from 'gojs'
     PickListModule,
     BrowserAnimationsModule,
     PapaParseModule,
-    FileUploadModule 
+    FileUploadModule,
+    DialogModule
     
   ],
   providers: [

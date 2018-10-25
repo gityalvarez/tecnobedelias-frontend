@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Carrera } from '../_models/Carrera';
 import { Asignatura } from '../_models/Asignatura';
+import { Asignatura_Carrera } from '../_models/Asignatura_Carrera';
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +38,9 @@ export class CarreraService {
     return this.http.get(environment.API+'/carrera/listarasignaturasfaltantes/'+carrera.nombre);
   }
 
-  asignarAsignatura(carrera:Carrera,asignatura:Asignatura){
+  asignarAsignatura(carrera:Carrera,asignatura:Asignatura,asignaturaCarrera:Asignatura_Carrera){
     console.log("entre al asignarAsignatura del carreraSErvice con la carrera "+carrera.nombre+" y la asignatura "+asignatura.nombre);
-    return this.http.get(environment.API+'/carrera/asignarasignatura',{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre}});
+    return this.http.post(environment.API+'/carrera/asignarasignatura',asignaturaCarrera,{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre}});
 
   }
 

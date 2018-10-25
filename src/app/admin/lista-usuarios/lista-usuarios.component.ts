@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class ListaUsuariosComponent implements OnInit {
   public usuarios:Usuario[];
-  public searchString: string;
+  public searchString : string;
 
 
   constructor(private usuarioService:UsuarioService, private router:Router) { }
