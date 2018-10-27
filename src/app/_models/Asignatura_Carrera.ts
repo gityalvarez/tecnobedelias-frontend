@@ -10,6 +10,7 @@ export class Asignatura_Carrera{
     notaMinimaExamen:number;
     notaMinimaExonera:number;
     notaMaxima:number;
+
     
  
  }

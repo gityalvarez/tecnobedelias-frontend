@@ -3,7 +3,9 @@ import { Carrera } from 'src/app/_models/Carrera';
 import * as go from 'gojs';
 import { InscripcionService } from 'src/app/_services/inscripcion.service';
 import { CarreraService } from 'src/app/_services/carrera.service';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
+
+
 
 @Component({
     selector: 'app-grafo',

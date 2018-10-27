@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Asignatura } from 'src/app/_models/Asignatura';
 import { AsignaturaService } from 'src/app/_services/asignatura.service';
 import { Router } from '@angular/router';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @Component({
   selector: 'app-asignatura-form',
@@ -16,6 +17,7 @@ export class AsignaturaFormComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,private asignaturaService:AsignaturaService, private router:Router) {
     this.asignatura= new Asignatura();
+    this.asignatura.taller = false;
 
    }
 
@@ -23,7 +25,8 @@ export class AsignaturaFormComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       nombre:['',Validators.required],
       descripcion:[''],
-      codigo:['',Validators.required]
+      codigo:['',Validators.required],
+      taller:['']
     });
   }
 

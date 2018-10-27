@@ -6,5 +6,6 @@ export class Asignatura{
    nombre:string;
    descripcion:string;
    asignaturaCarrera: Asignatura_Carrera[];
+   taller:boolean;
 
 }

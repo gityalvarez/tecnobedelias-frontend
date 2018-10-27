@@ -51,6 +51,8 @@ import { EventService } from './student/calendario/event.service';
 import * as $ from 'jquery';
 import * as go from 'gojs';
 import { DropdownModule } from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -99,7 +101,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FileUploadModule,
     DialogModule,
     FullCalendarModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
 
   ],
   providers: [
