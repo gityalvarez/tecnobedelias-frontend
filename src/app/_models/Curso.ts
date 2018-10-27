@@ -6,6 +6,7 @@ export class Curso{
     fechaFin : Date;
     cursoEstudiante:Object;
     horarios : Object[];
+    nombreAsignatura : string;
 
 
 }

@@ -50,6 +50,7 @@ import { HelloComponent } from './student/calendario/hello.component';
 import { EventService } from './student/calendario/event.service';
 import * as $ from 'jquery';
 import * as go from 'gojs';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import * as go from 'gojs';
     PapaParseModule,
     FileUploadModule,
     DialogModule,
-    FullCalendarModule
+    FullCalendarModule,
+    DropdownModule
 
   ],
   providers: [

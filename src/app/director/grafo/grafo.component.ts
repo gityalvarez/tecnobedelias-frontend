@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit, OnChanges, DoCheck, ViewChild, ElementRef } from '@angular/core';
 import { Carrera } from 'src/app/_models/Carrera';
 import * as go from 'gojs';
+import { InscripcionService } from 'src/app/_services/inscripcion.service';
+import { CarreraService } from 'src/app/_services/carrera.service';
+import {DropdownModule} from 'primeng/dropdown';
 
 @Component({
     selector: 'app-grafo',
@@ -8,58 +11,80 @@ import * as go from 'gojs';
     styleUrls: ['./grafo.component.css']
 })
 export class GrafoComponent implements OnInit, DoCheck {
-    private carrera: go.Diagram = new go.Diagram();
-    private asignatura: go.Diagram = new go.Diagram();
+
+    constructor(private inscripcionService: InscripcionService,private carreraService:CarreraService){}
+
+    private carreraDiagram: go.Diagram = new go.Diagram();
+    private asignaturaDiagram: go.Diagram = new go.Diagram();
     private prueba: go.GraphLinksModel = new go.GraphLinksModel();
-
+    carreras : Carrera[];
+    carrera : Carrera;
+    
     ngOnInit() {
-        const $ = go.GraphObject.make;
 
+        this.carreraService.getCarreras().subscribe(
+            (carreras)=>{
+                this.carreras=carreras;
+            }
+        )      
+        
+        
+    }
+    ngDoCheck() {
+        this.carreraDiagram.contentAlignment = go.Spot.LeftCenter;
+        this.carreraDiagram.padding = new go.Margin(0,0,0,90)
+    }
+    
+    onChange(){
+
+        const $ = go.GraphObject.make;
+    
         // Cambio de Asignatura en Diagrama de Asignatura //
         const showLocalOnLocalClick = () => {
-            const selectedLocal = this.asignatura.selection.first();
+            const selectedLocal = this.asignaturaDiagram.selection.first();
             if (selectedLocal !== null) {
-                this.carrera.select(this.carrera.findPartForKey(selectedLocal.data.key));
+                this.carreraDiagram.select(this.carreraDiagram.findPartForKey(selectedLocal.data.key));
             }
         };
-
+    
+    
         // Cambio de Asignatura en Diagrama de Carrera //
         const showLocalOnFullClick = () => {
-            const node = this.carrera.selection.first();
+            const node = this.carreraDiagram.selection.first();
             if (node !== null && node instanceof go.Node) {
                 // highlighter.visible = true;
-                this.carrera.scrollToRect(node.actualBounds);
+                this.carreraDiagram.scrollToRect(node.actualBounds);
                 highlighter.location = node.location;
-
+    
                 const model = new go.GraphLinksModel();
                 const nearby = node.findTreeParts(2);
                 // const parent = node.findTreeParentNode();
                 const links = node.findLinksConnected();
                 const nodes = node.findNodesInto();
                 // nearby.add(nodes);
-
+    
                 nearby.each((n) => {
                     if (n instanceof go.Node) { model.addNodeData(n.data); }
                     // model.addLinkData(n.data);
                 });
-
+    
                 links.each((l) => {
                     model.addLinkData(l.data);
                 });
                 nodes.each((n) => {
                     model.addNodeData(n.data);
                 });
-
-                this.asignatura.model = model;
-                const selectedLocal = this.asignatura.findPartForKey(node.data.key);
+    
+                this.asignaturaDiagram.model = model;
+                const selectedLocal = this.asignaturaDiagram.findPartForKey(node.data.key);
                 if (selectedLocal !== null) { selectedLocal.isSelected = true; }
             } else {
                 // this.asignatura.clearSelection();
                 highlighter.visible = false;
-                this.asignatura.clear();
+                this.asignaturaDiagram.clear();
             }
         };
-
+    
         // Crear Diagrama Aleatorio //
         function setupDiagram(total) {
             if (total === undefined) { total = 20; }
@@ -78,9 +103,9 @@ export class GrafoComponent implements OnInit, DoCheck {
             }
             // this.asignatura.model = new go.GraphLinksModel(nodeDataArray);
         }
-
+    
         // Diagrama de Carrera //
-        this.carrera = $(go.Diagram, {
+        this.carreraDiagram = $(go.Diagram, {
             // initialAutoScale: go.Diagram.UniformToFill,
             // maxScale: 0.5,
             initialContentAlignment: go.Spot.Center,
@@ -101,9 +126,9 @@ export class GrafoComponent implements OnInit, DoCheck {
             maxSelectionCount: 1,
             ChangedSelection: showLocalOnFullClick
         });
-
+    
         // Diagrama de Asignatura //
-        this.asignatura = $(go.Diagram, {
+        this.asignaturaDiagram = $(go.Diagram, {
             // initialAutoScale: go.Diagram.UniformToFill,
             initialContentAlignment: go.Spot.Center,
             isReadOnly: true,
@@ -120,13 +145,13 @@ export class GrafoComponent implements OnInit, DoCheck {
             }),
             LayoutCompleted: (e) => {
                 const sel = e.diagram.selection.first();
-                if (sel !== null) { this.asignatura.scrollToRect(sel.actualBounds); }
+                if (sel !== null) { this.asignaturaDiagram.scrollToRect(sel.actualBounds); }
             },
             maxSelectionCount: 1,
             ChangedSelection: showLocalOnLocalClick
         });
-
-        this.carrera.add(
+    
+        this.carreraDiagram.add(
             $(
                 go.Part,
                 $(go.TextBlock, 'Carrera', {
@@ -138,7 +163,7 @@ export class GrafoComponent implements OnInit, DoCheck {
                 })
             )
         );
-
+    
         // Plantilla de Nodo //
         const myNodeTemplate = $(
             go.Node,
@@ -169,6 +194,7 @@ export class GrafoComponent implements OnInit, DoCheck {
                 go.Shape,
                 'RoundedRectangle',
                 new go.Binding('fill', 'color'),
+                
                 new go.Binding('stroke', 'isHighlighted', (h) => {
                     return h ? 'black' : 'grey';
                 }).ofObject(),
@@ -233,9 +259,9 @@ export class GrafoComponent implements OnInit, DoCheck {
             )
             */
         );
-        this.carrera.nodeTemplate = myNodeTemplate;
-        this.asignatura.nodeTemplate = myNodeTemplate;
-
+        this.carreraDiagram.nodeTemplate = myNodeTemplate;
+        this.asignaturaDiagram.nodeTemplate = myNodeTemplate;
+    
         // Plantilla de Enlace //
         const myLinkTemplate = $(
             go.Link,
@@ -291,10 +317,10 @@ export class GrafoComponent implements OnInit, DoCheck {
                 )
             }
         );
-        this.carrera.linkTemplate = myLinkTemplate;
-        this.asignatura.linkTemplate = myLinkTemplate;
+        this.carreraDiagram.linkTemplate = myLinkTemplate;
+        this.asignaturaDiagram.linkTemplate = myLinkTemplate;
         setupDiagram(10);
-
+    
         // Resaltador de Asignatura //
         const highlighter = $(
             go.Part,
@@ -311,23 +337,111 @@ export class GrafoComponent implements OnInit, DoCheck {
                 strokeWidth: 4
             })
         );
-        this.carrera.add(highlighter);
-        this.carrera.addDiagramListener('InitialLayoutCompleted', (e) => {
-            const node0 = this.carrera.findPartForKey(0);
+        this.carreraDiagram.add(highlighter);
+        this.carreraDiagram.addDiagramListener('InitialLayoutCompleted', (e) => {
+            const node0 = this.carreraDiagram.findPartForKey(0);
             if (node0 !== null) { node0.isSelected = true; }
             showLocalOnFullClick();
         });
-
-        this.carrera.click = (e) => {
-            this.carrera.startTransaction('no highlighteds');
-            this.carrera.clearHighlighteds();
-            this.carrera.commitTransaction('no highlighteds');
+    
+        this.carreraDiagram.click = (e) => {
+            this.carreraDiagram.startTransaction('no highlighteds');
+            this.carreraDiagram.clearHighlighteds();
+            this.carreraDiagram.commitTransaction('no highlighteds');
         };
-
+    
         // Caso de Prueba //
         // this.prueba = $(go.GraphLinksModel);
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    
+    
         this.prueba.nodeDataArray = [
+    
             {
+                key: '250',
+                name: 'Cálculo 2',
+                color: 'green'
+            },
+            {
+                key: '251',
+                name: 'Algebra 1',
+                color: 'blue'
+            },
+            {
+                key: '253',
+                name: 'Algebra 2',
+                color: 'green'
+            },
+            {
+                key: '254',
+                name: 'Discreta 1',
+                color: 'blue'
+            },
+            
+        ];
+    */
+    
+        
+        /*this.carreraService.getNodos('Ingenieria Electrica').subscribe(
+            (nodos)=>{
+                console.log('pude traer los nodos')
+                nodos.forEach(nodo => {
+                    console.log(nodo.key +" "+ nodo.color + " " +nodo.name)
+                    this.prueba.nodeDataArray.push({
+                        key : 'nodo.key',
+                        name : 'nodo.name',
+                        color : 'nodo.color'    
+                    })                    
+                });
+    
+               
+        
+                
+    
+            }
+        )
+        */
+    
+        /*
+       
+        */
+        this.carreraService.getNodos(this.carrera.nombre).subscribe(
+            (nodos)=>{
+                this.carreraService.getLinks(this.carrera.nombre).subscribe(
+                    (links)=>{
+                        this.prueba.nodeDataArray = nodos;
+                        this.prueba.linkDataArray = links;
+                    }
+                )
+ 
+            }
+        );
+        
+        this.carreraDiagram.model = this.prueba;
+
+        this.carreraDiagram.div = <HTMLDivElement>document.getElementById('carreraDiagram');
+        this.asignaturaDiagram.div = <HTMLDivElement>document.getElementById('asignaturaDiagram');
+        this.carreraDiagram.requestUpdate();
+        this.asignaturaDiagram.requestUpdate();
+    }
+}
+
+
+
+
+
+/*{
                 key: '1020',
                 name: 'Cálculo 1',
                 color: 'blue'
@@ -417,10 +531,10 @@ export class GrafoComponent implements OnInit, DoCheck {
                 name: 'Redes',
                 color: 'purple'
             }
-        ];
 
-        this.prueba.linkDataArray = [
-            { from: '1020', to: '1022' },
+*/
+
+/*{ from: '1020', to: '1022' },
             { from: '1023', to: '1026' },
             { from: '1030', to: '1031' },
             { from: '1322', to: '1321' },
@@ -455,14 +569,5 @@ export class GrafoComponent implements OnInit, DoCheck {
             { from: '1443', to: '1532' },
             { from: '1443', to: '1446' },
             { from: '1532', to: '1446' }
-        ];
 
-        this.carrera.model = this.prueba;
-    }
-    ngDoCheck() {
-        this.carrera.div = <HTMLDivElement>document.getElementById('carrera');
-        this.asignatura.div = <HTMLDivElement>document.getElementById('asignatura');
-        this.carrera.requestUpdate();
-        this.asignatura.requestUpdate();
-    }
-}
+*/

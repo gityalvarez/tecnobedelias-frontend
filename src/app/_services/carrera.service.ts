@@ -73,6 +73,16 @@ export class CarreraService {
     return this.http.get(environment.API+'/carrera/desasignarprevia',{params: {'carrera': carrera.nombre,'asignatura':asignatura.nombre,'asignaturaPrevia':asignaturaPrevia.nombre}});
   }
 
+  getNodos(carrera:string):Observable<any>{
+    return this.http.get(environment.API+'/carrera/asignaturasgrafo',{params:{'carrera':carrera}});
+
+  }
+
+  getLinks(carrera:string):Observable<any>{
+    return this.http.get(environment.API+'/carrera/linksgrafo',{params:{'carrera':carrera}});
+
+  }
+
   
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventService } from './event.service';
+import { InscripcionService } from 'src/app/_services/inscripcion.service';
 
 @Component({
   selector: 'app-calendario',
@@ -12,21 +13,29 @@ export class CalendarioComponent implements OnInit  {
   calendarOptions: Options;
   displayEvent: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  constructor(protected eventService: EventService) { }
+  constructor(protected eventService: EventService, private inscripcionService: InscripcionService) { }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe(data => {
-      this.calendarOptions = {
-        editable: true,
-        eventLimit: false,
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay,listMonth'
-        },
-        events: data
-      };
-    });
+    this.inscripcionService.consultaCursos().subscribe(
+      (cursos)=>{
+        this.inscripcionService.consultaExamen().subscribe(
+          (examenes)=>{
+            this.eventService.getEvents(cursos,examenes).subscribe(data => {
+              this.calendarOptions = {
+                editable: true,
+                eventLimit: false,
+                header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                events: data
+              };
+            });
+          }
+        )
+      }
+    )
   }
   clickButton(model: any) {
     this.displayEvent = model;
@@ -60,4 +69,9 @@ export class CalendarioComponent implements OnInit  {
     };
     this.displayEvent = model;
   }
+
+  /*ngDoCheck(){
+    this.ucCalendar.fullCalendar('refetchEvents')
+  }
+  */
 }
