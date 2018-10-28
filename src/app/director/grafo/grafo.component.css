@@ -1,12 +1,22 @@
-.diagrama {
+.diagram {
   height: 240px;
   width: 100%;
-  border: 2px solid grey;
-  margin-bottom: 4px;
+  border: 1px solid lightgrey;
 }
-#carrera {
+.topDiagram {
+  margin-top: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: none;
+}
+.bottomDiagram {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 10px;
+}
+#carreraDiagram {
   background: lightgrey;
 }
-#asignatura {
+#asignaturaDiagram {
   background: whitesmoke;
 }

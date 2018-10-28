@@ -1,46 +1,38 @@
-import { Component, OnInit, AfterViewInit, OnChanges, DoCheck, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Carrera } from 'src/app/_models/Carrera';
 import * as go from 'gojs';
 import { InscripcionService } from 'src/app/_services/inscripcion.service';
 import { CarreraService } from 'src/app/_services/carrera.service';
-import { DropdownModule } from 'primeng/dropdown';
-
-
 
 @Component({
     selector: 'app-grafo',
     templateUrl: './grafo.component.html',
     styleUrls: ['./grafo.component.css']
 })
-export class GrafoComponent implements OnInit, DoCheck {
+export class GrafoComponent implements OnInit {
 
-    constructor(private inscripcionService: InscripcionService,private carreraService:CarreraService){}
+    constructor(private inscripcionService: InscripcionService, private carreraService: CarreraService) { }
 
     private carreraDiagram: go.Diagram = new go.Diagram();
     private asignaturaDiagram: go.Diagram = new go.Diagram();
     private prueba: go.GraphLinksModel = new go.GraphLinksModel();
-    carreras : Carrera[];
-    carrera : Carrera;
-    
+    carreras: Carrera[];
+    carrera: Carrera;
+
     ngOnInit() {
 
         this.carreraService.getCarreras().subscribe(
-            (carreras)=>{
-                this.carreras=carreras;
+            (carreras) => {
+                this.carreras = carreras;
             }
-        )      
-        
-        
+        );
+
     }
-    ngDoCheck() {
-        this.carreraDiagram.contentAlignment = go.Spot.LeftCenter;
-        this.carreraDiagram.padding = new go.Margin(0,0,0,90)
-    }
-    
-    onChange(){
+
+    onChange() {
 
         const $ = go.GraphObject.make;
-    
+
         // Cambio de Asignatura en Diagrama de Asignatura //
         const showLocalOnLocalClick = () => {
             const selectedLocal = this.asignaturaDiagram.selection.first();
@@ -48,8 +40,7 @@ export class GrafoComponent implements OnInit, DoCheck {
                 this.carreraDiagram.select(this.carreraDiagram.findPartForKey(selectedLocal.data.key));
             }
         };
-    
-    
+
         // Cambio de Asignatura en Diagrama de Carrera //
         const showLocalOnFullClick = () => {
             const node = this.carreraDiagram.selection.first();
@@ -57,26 +48,26 @@ export class GrafoComponent implements OnInit, DoCheck {
                 // highlighter.visible = true;
                 this.carreraDiagram.scrollToRect(node.actualBounds);
                 highlighter.location = node.location;
-    
+
                 const model = new go.GraphLinksModel();
                 const nearby = node.findTreeParts(2);
                 // const parent = node.findTreeParentNode();
                 const links = node.findLinksConnected();
                 const nodes = node.findNodesInto();
                 // nearby.add(nodes);
-    
+
                 nearby.each((n) => {
                     if (n instanceof go.Node) { model.addNodeData(n.data); }
                     // model.addLinkData(n.data);
                 });
-    
+
                 links.each((l) => {
                     model.addLinkData(l.data);
                 });
                 nodes.each((n) => {
                     model.addNodeData(n.data);
                 });
-    
+
                 this.asignaturaDiagram.model = model;
                 const selectedLocal = this.asignaturaDiagram.findPartForKey(node.data.key);
                 if (selectedLocal !== null) { selectedLocal.isSelected = true; }
@@ -86,7 +77,23 @@ export class GrafoComponent implements OnInit, DoCheck {
                 this.asignaturaDiagram.clear();
             }
         };
-    
+
+        // Resaltador Animado de Enlace //
+        const loop = () => {
+            const diagram = this.carreraDiagram;
+            setTimeout(function() {
+              const oldskips = diagram.skipsUndoManager;
+              diagram.skipsUndoManager = true;
+              diagram.links.each(function(link) {
+                const shape = <go.Shape>link.findObject('PIPE');
+                const off = shape.strokeDashOffset - 1;
+                shape.strokeDashOffset = off <= 0 ? 16 : off;
+              });
+              diagram.skipsUndoManager = oldskips;
+              loop();
+            }, 50);
+        };
+
         // Crear Diagrama Aleatorio //
         function setupDiagram(total) {
             if (total === undefined) { total = 20; }
@@ -105,7 +112,7 @@ export class GrafoComponent implements OnInit, DoCheck {
             }
             // this.asignatura.model = new go.GraphLinksModel(nodeDataArray);
         }
-    
+
         // Diagrama de Carrera //
         this.carreraDiagram = $(go.Diagram, {
             // initialAutoScale: go.Diagram.UniformToFill,
@@ -126,9 +133,9 @@ export class GrafoComponent implements OnInit, DoCheck {
                 // sorting: go.TreeLayout.SortingAscending
             }),
             maxSelectionCount: 1,
-            ChangedSelection: showLocalOnFullClick
+            ChangedSelection: showLocalOnFullClick,
         });
-    
+
         // Diagrama de Asignatura //
         this.asignaturaDiagram = $(go.Diagram, {
             // initialAutoScale: go.Diagram.UniformToFill,
@@ -152,7 +159,7 @@ export class GrafoComponent implements OnInit, DoCheck {
             maxSelectionCount: 1,
             ChangedSelection: showLocalOnLocalClick
         });
-    
+
         this.carreraDiagram.add(
             $(
                 go.Part,
@@ -165,7 +172,7 @@ export class GrafoComponent implements OnInit, DoCheck {
                 })
             )
         );
-    
+
         // Plantilla de Nodo //
         const myNodeTemplate = $(
             go.Node,
@@ -196,7 +203,7 @@ export class GrafoComponent implements OnInit, DoCheck {
                 go.Shape,
                 'RoundedRectangle',
                 new go.Binding('fill', 'color'),
-                
+
                 new go.Binding('stroke', 'isHighlighted', (h) => {
                     return h ? 'black' : 'grey';
                 }).ofObject(),
@@ -205,7 +212,7 @@ export class GrafoComponent implements OnInit, DoCheck {
                 }).ofObject(),
                 {
                     stroke: 'grey',
-                    strokeWidth: 2
+                    strokeWidth: 2,
                     // parameter1: 10,
                     /*
                     fill: 'black',
@@ -263,7 +270,7 @@ export class GrafoComponent implements OnInit, DoCheck {
         );
         this.carreraDiagram.nodeTemplate = myNodeTemplate;
         this.asignaturaDiagram.nodeTemplate = myNodeTemplate;
-    
+
         // Plantilla de Enlace //
         const myLinkTemplate = $(
             go.Link,
@@ -291,8 +298,12 @@ export class GrafoComponent implements OnInit, DoCheck {
                 }).ofObject(),
                 new go.Binding('strokeWidth', 'isHighlighted', (h) => {
                     return h ? 4 : 2;
-                }).ofObject()
+                }).ofObject(),
                 // { stroke: 'silver', strokeWidth: 2 }
+                new go.Binding('strokeDashArray', 'isHighlighted', function(h) {
+                    return h ? [10, 6] : [0, 0];
+                  }).ofObject(),
+                { name: 'PIPE', strokeCap: 'round' }
             ),
             $(
                 go.Shape,
@@ -321,8 +332,8 @@ export class GrafoComponent implements OnInit, DoCheck {
         );
         this.carreraDiagram.linkTemplate = myLinkTemplate;
         this.asignaturaDiagram.linkTemplate = myLinkTemplate;
-        setupDiagram(10);
-    
+        // setupDiagram(10);
+
         // Resaltador de Asignatura //
         const highlighter = $(
             go.Part,
@@ -345,231 +356,32 @@ export class GrafoComponent implements OnInit, DoCheck {
             if (node0 !== null) { node0.isSelected = true; }
             showLocalOnFullClick();
         });
-    
+
         this.carreraDiagram.click = (e) => {
             this.carreraDiagram.startTransaction('no highlighteds');
             this.carreraDiagram.clearHighlighteds();
             this.carreraDiagram.commitTransaction('no highlighteds');
         };
-    
-        // Caso de Prueba //
-        // this.prueba = $(go.GraphLinksModel);
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    
-    
-        this.prueba.nodeDataArray = [
-    
-            {
-                key: '250',
-                name: 'Cálculo 2',
-                color: 'green'
-            },
-            {
-                key: '251',
-                name: 'Algebra 1',
-                color: 'blue'
-            },
-            {
-                key: '253',
-                name: 'Algebra 2',
-                color: 'green'
-            },
-            {
-                key: '254',
-                name: 'Discreta 1',
-                color: 'blue'
-            },
-            
-        ];
-    */
-    
-        
-        /*this.carreraService.getNodos('Ingenieria Electrica').subscribe(
-            (nodos)=>{
-                console.log('pude traer los nodos')
-                nodos.forEach(nodo => {
-                    console.log(nodo.key +" "+ nodo.color + " " +nodo.name)
-                    this.prueba.nodeDataArray.push({
-                        key : 'nodo.key',
-                        name : 'nodo.name',
-                        color : 'nodo.color'    
-                    })                    
-                });
-    
-               
-        
-                
-    
-            }
-        )
-        */
-    
-        /*
-       
-        */
+
         this.carreraService.getNodos(this.carrera.nombre).subscribe(
-            (nodos)=>{
+            (nodos) => {
                 this.carreraService.getLinks(this.carrera.nombre).subscribe(
-                    (links)=>{
+                    (links) => {
                         this.prueba.nodeDataArray = nodos;
                         this.prueba.linkDataArray = links;
                     }
-                )
- 
+                );
+
             }
         );
-        
-        this.carreraDiagram.model = this.prueba;
 
+        this.carreraDiagram.model = this.prueba;
         this.carreraDiagram.div = <HTMLDivElement>document.getElementById('carreraDiagram');
         this.asignaturaDiagram.div = <HTMLDivElement>document.getElementById('asignaturaDiagram');
+        this.carreraDiagram.contentAlignment = go.Spot.LeftCenter;
+        this.carreraDiagram.padding = new go.Margin(0, 0, 0, 90);
         this.carreraDiagram.requestUpdate();
         this.asignaturaDiagram.requestUpdate();
+        loop();
     }
 }
-
-
-
-
-
-/*{
-                key: '1020',
-                name: 'Cálculo 1',
-                color: 'blue'
-            },
-            {
-                key: '1022',
-                name: 'Cálculo 2',
-                color: 'green'
-            },
-            {
-                key: '1030',
-                name: 'Algebra 1',
-                color: 'blue'
-            },
-            {
-                key: '1031',
-                name: 'Algebra 2',
-                color: 'green'
-            },
-            {
-                key: '1023',
-                name: 'Discreta 1',
-                color: 'blue'
-            },
-            {
-                key: '1026',
-                name: 'Discreta 2',
-                color: 'green'
-            },
-            {
-                key: '1322',
-                name: 'Programación 1',
-                color: 'blue'
-            },
-            {
-                key: '1321',
-                name: 'Programación 2',
-                color: 'green'
-            },
-            {
-                key: '1323',
-                name: 'Programación 3',
-                color: 'darkorange'
-            },
-            {
-                key: '1324',
-                name: 'Programación 4',
-                color: 'red'
-            },
-            {
-                key: '1025',
-                name: 'Probabilidad',
-                color: 'darkorange'
-            },
-            {
-                key: '1027',
-                name: 'Logica',
-                color: 'green'
-            },
-            {
-                key: '1033',
-                name: 'Metodos',
-                color: 'darkorange'
-            },
-            {
-                key: '1443',
-                name: 'Arquitectura',
-                color: 'darkorange'
-            },
-            {
-                key: '1325',
-                name: 'Lenguajes',
-                color: 'red'
-            },
-            {
-                key: '1532',
-                name: 'Sistemas',
-                color: 'red'
-            },
-            {
-                key: '1327',
-                name: 'Taller',
-                color: 'purple'
-            },
-            {
-                key: '1446',
-                name: 'Redes',
-                color: 'purple'
-            }
-
-*/
-
-/*{ from: '1020', to: '1022' },
-            { from: '1023', to: '1026' },
-            { from: '1030', to: '1031' },
-            { from: '1322', to: '1321' },
-            { from: '1022', to: '1025' },
-            { from: '1022', to: '1033' },
-            { from: '1030', to: '1026' },
-            { from: '1031', to: '1033' },
-            { from: '1321', to: '1443' },
-            { from: '1023', to: '1443' },
-            { from: '1027', to: '1443' },
-            { from: '1020', to: '1443' },
-            { from: '1023', to: '1027' },
-            { from: '1321', to: '1323' },
-            { from: '1323', to: '1324' },
-            { from: '1020', to: '1324' },
-            { from: '1030', to: '1324' },
-            { from: '1026', to: '1911' },
-            { from: '1027', to: '1911' },
-            { from: '1323', to: '1911' },
-            { from: '1023', to: '1323' },
-            { from: '1030', to: '1025' },
-            { from: '1322', to: '1033' },
-            { from: '1324', to: '1327' },
-            { from: '1023', to: '1327' },
-            { from: '1020', to: '1325' },
-            { from: '1030', to: '1325' },
-            { from: '1027', to: '1325' },
-            { from: '1323', to: '1325' },
-            { from: '1020', to: '1532' },
-            { from: '1030', to: '1532' },
-            { from: '1323', to: '1532' },
-            { from: '1443', to: '1532' },
-            { from: '1443', to: '1446' },
-            { from: '1532', to: '1446' }
-
-*/

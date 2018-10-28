@@ -51,7 +51,8 @@ import { EventService } from './student/calendario/event.service';
 import * as $ from 'jquery';
 import * as go from 'gojs';
 import { DropdownModule } from 'primeng/dropdown';
-import {CheckboxModule} from 'primeng/checkbox';
+import { CheckboxModule } from 'primeng/checkbox';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     DialogModule,
     FullCalendarModule,
     DropdownModule,
-    CheckboxModule
+    CheckboxModule,
+    NgbModule
 
   ],
   providers: [

@@ -1,9 +1,5 @@
-
-
 <h5 class="first">Seleccione una Carrera</h5>
 <p-dropdown (onChange)="onChange()" [options]="carreras" [(ngModel)]="carrera" placeholder="Seleccione una carrera" optionLabel="nombre" ></p-dropdown>
-<p>Carrera: {{carrera ? carrera.nombre : 'ninguna'}}</p>
-
-
-<div id="carreraDiagram" class="diagrama"></div>
-<div id="asignaturaDiagram" class="diagrama"></div>
+<!-- <p>Carrera: {{carrera ? carrera.nombre : 'ninguna'}}</p> -->
+<div id="carreraDiagram" class="diagram topDiagram"></div>
+<div id="asignaturaDiagram" class=" diagram bottomDiagram"></div>
