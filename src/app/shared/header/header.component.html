@@ -13,8 +13,10 @@
             {{username}}
           </a>
           <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="estudiante/perfil">Perfil</a>
-            <div class="dropdown-divider"></div>
+            <div *ngIf="rol=='estudiante'">
+              <a class="dropdown-item" href="estudiante/perfil">Perfil</a>
+              <div class="dropdown-divider"></div>
+            </div>
             <a class="dropdown-item" (click)="logout()" href="">Logout</a>
           </div>
         </li> 

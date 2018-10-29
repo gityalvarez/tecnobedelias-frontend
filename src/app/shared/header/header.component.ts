@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   public username :string;
   public rol : string;
   
+  
   constructor(private tokenStorage:TokenStorage,private router:Router) { }
 
   ngOnInit() {
