@@ -23,17 +23,23 @@ export class LoginComponent implements OnInit {
 
   login():void{
     this.authServ.auth(this.username,this.password).subscribe(
-      data=>{
+      (data)=>{
           if(data.headers.get('Authorization') != null){
             this.tokenStorage.saveToken(data.headers.get('Authorization'));
             const role = this.tokenStorage.getRole();
             this.router.navigate([role]);
-          }else{
+          }/*else{
             console.log('usuario no registrado')
             this.password=''
             this.username=''
             this.alert = true
-          }
+          }*/
+        },
+        (error)=>{
+          this.password=''
+            this.username=''
+            this.alert = true
+
         }
 
     )}

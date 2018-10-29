@@ -13,6 +13,7 @@ import { CarreraFormComponent } from 'src/app/director/carrera-form/carrera-form
 import { AsignaturaFormComponent } from 'src/app/director/asignatura-form/asignatura-form.component';
 import { AsignarAsignaturaComponent } from 'src/app/director/asignar-asignatura/asignar-asignatura.component';
 import { ResetComponent } from 'src/app/shared/reset/reset.component';
+import { PerfilComponent } from 'src/app/student/perfil/perfil.component';
 
 const routes: Routes = [
 
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'administrador/usuario-form', component: UsuarioFormComponent},
   { path: 'director/carrera-form', component: CarreraFormComponent},
   { path: 'director/asignatura-form', component: AsignaturaFormComponent},
+  { path: 'estudiante/perfil', component: PerfilComponent},
   { path: 'reset', component: ResetComponent},
 
     { path: '**', redirectTo: '' }

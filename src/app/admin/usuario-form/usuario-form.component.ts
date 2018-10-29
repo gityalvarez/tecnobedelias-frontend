@@ -40,9 +40,12 @@ export class UsuarioFormComponent implements OnInit {
           fechaNacimiento: [''],
           rol:['']
       });
+      
   }
 
   get f() { return this.registerForm.controls; }
+
+
 
   onSubmit() {
     this.submitted = true;

@@ -53,6 +53,8 @@ import * as go from 'gojs';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PerfilComponent } from './student/perfil/perfil.component';
+
 
 
 @NgModule({
@@ -82,7 +84,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ListaExamenesComponent,
     CargarUsuariosComponent,
     CalendarioComponent,
-    HelloComponent
+    HelloComponent,
+    PerfilComponent
 
   ],
   imports: [
