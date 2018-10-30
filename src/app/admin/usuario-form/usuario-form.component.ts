@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../_models/Usuario';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap';
 import { Rol } from '../../_models/Rol';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 
@@ -20,6 +21,7 @@ export class UsuarioFormComponent implements OnInit {
   public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
   roles = ["ADMINISTRADOR","DIRECTOR","FUNCIONARIO","ESTUDIANTE"];
   public rol:Rol;
+  uploadedFiles: any[] = [];
   constructor(private formBuilder: FormBuilder,private usuarioService:UsuarioService,private router: Router) {
     this.usuario = new Usuario();
     this.rol= new Rol();
@@ -38,13 +40,27 @@ export class UsuarioFormComponent implements OnInit {
           password: ['', [Validators.required, Validators.minLength(6)]],
           cedula: ['',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]],
           fechaNacimiento: [''],
-          rol:['']
+          rol:[''],
+          foto:[]
       });
       
   }
 
   get f() { return this.registerForm.controls; }
 
+  onSelect(event){
+    console.log('entre al onSelect')
+    let reader = new FileReader();
+    if(event.files && event.files.length > 0) {
+      console.log("entre al if dentro del onSelect")
+      let file = event.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        console.log("estoy en el onload "+reader.result);
+        this.usuario.foto = reader.result.toString();
+      }
+    }
+  }
 
 
   onSubmit() {

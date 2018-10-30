@@ -54,6 +54,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfilComponent } from './student/perfil/perfil.component';
+import { AsignaturaEditarComponent } from './director/asignatura-editar/asignatura-editar.component';
+import { CarreraEditarComponent } from './director/carrera-editar/carrera-editar.component';
 
 
 
@@ -85,7 +87,9 @@ import { PerfilComponent } from './student/perfil/perfil.component';
     CargarUsuariosComponent,
     CalendarioComponent,
     HelloComponent,
-    PerfilComponent
+    PerfilComponent,
+    AsignaturaEditarComponent,
+    CarreraEditarComponent
 
   ],
   imports: [

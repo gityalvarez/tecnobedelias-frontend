@@ -30,6 +30,10 @@ export class CarreraService {
 
   }
 
+  modificarCarrera(carrera:Carrera):Observable<any>{
+    return this.http.post(environment.API+'/carrera/modificar',carrera,{params:{'carreraId': carrera.id.toString()}});
+  }
+
   getAsignaturas(carrera:Carrera):Observable<any>{
     return this.http.get(environment.API+'/carrera/listarasignaturas/'+carrera.nombre)
   }

@@ -9,6 +9,9 @@
       <!-- Dropdown -->
       <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
+        <div *ngIf="rol === 'estudiante'">
+          <img [src]="foto" class="rounded-circle" width="65" height="65">
+        </div>
           <a class="nav-link dropdown-toggle text-light"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{username}}
           </a>

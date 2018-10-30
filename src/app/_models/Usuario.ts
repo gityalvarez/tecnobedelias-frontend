@@ -7,5 +7,6 @@ export class Usuario{
     email:string;
     fechaNacimiento:Date;
     cedula:number;
+    foto:string
 
 }

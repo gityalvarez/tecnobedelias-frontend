@@ -67,6 +67,11 @@ export class ListaCarrerasComponent implements OnInit {
     }
   }
 
+  editarCarrera(carrera){
+    this.carreraService.set(carrera);
+    this.router.navigate(['director/carrera-editar']);
+  }
+
   inscripcionACarrera(carrera:Carrera){
     if(window.confirm('Seguro Quiere Inscribirse a la carrera '+carrera.nombre+"?")){
       this.inscripcionService.inscripcionACarrera(carrera).subscribe(

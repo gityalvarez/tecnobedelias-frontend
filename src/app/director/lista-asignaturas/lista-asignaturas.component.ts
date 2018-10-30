@@ -49,4 +49,10 @@ export class ListaAsignaturasComponent implements OnInit {
     }
   }
 
+  editarAsignatura(asignatura){
+    console.log('entre al editar asignatura con la asignatura '+asignatura.nombre)
+    this.asignaturaService.set(asignatura);
+    this.router.navigate(['director/asignatura-editar'])
+  }
+
 }

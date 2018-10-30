@@ -32,6 +32,10 @@ export class AsignaturaService {
 
   }
 
+  modificarAsignatura(asignatura:Asignatura):Observable<any>{
+    return this.http.post(environment.API+'/asignatura/modificar',asignatura,{params:{'asignaturaId': asignatura.id.toString()}});
+  }
+
 
   set(asignatura:Asignatura){
     this.asignatura=asignatura;

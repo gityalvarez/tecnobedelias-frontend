@@ -27,7 +27,13 @@ export class LoginComponent implements OnInit {
           if(data.headers.get('Authorization') != null){
             this.tokenStorage.saveToken(data.headers.get('Authorization'));
             const role = this.tokenStorage.getRole();
-            this.router.navigate([role]);
+            if (role == 'funcionario'){
+              
+            this.alert = true
+            this.tokenStorage.signOut()
+            this.password=''
+            this.username=''
+            }else this.router.navigate([role]);
           }/*else{
             console.log('usuario no registrado')
             this.password=''

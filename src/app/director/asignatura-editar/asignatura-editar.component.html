@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3>Editar Asignatura</h3>
+    <form (ngSubmit)="editar()">
+        <div class="form group">
+            <label for="codigo">Codigo</label>
+            <input type="text" name="codigo" class="form-control " disabled [(ngModel)]="asignatura.codigo">
+        </div>
+        <div class="form group">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" class="form-control " disabled [(ngModel)]="asignatura.nombre">
+        </div>
+        <div class="form group">
+            <label for="descripcion">Descripcion</label>
+            <textarea type="text" name="descripcion" class="form-control"  [(ngModel)]="asignatura.descripcion"></textarea>
+        </div>
+        <input type="submit" value="Guardar" class="btn btn-primary">
+        <button (click)="cancelar()" class="btn btn-default">Cancel</button>
+    </form>
+    
+  </div> 
+  </div>
+  </div>

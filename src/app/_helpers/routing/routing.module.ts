@@ -14,6 +14,8 @@ import { AsignaturaFormComponent } from 'src/app/director/asignatura-form/asigna
 import { AsignarAsignaturaComponent } from 'src/app/director/asignar-asignatura/asignar-asignatura.component';
 import { ResetComponent } from 'src/app/shared/reset/reset.component';
 import { PerfilComponent } from 'src/app/student/perfil/perfil.component';
+import { AsignaturaEditarComponent } from 'src/app/director/asignatura-editar/asignatura-editar.component';
+import { CarreraEditarComponent } from 'src/app/director/carrera-editar/carrera-editar.component';
 
 const routes: Routes = [
 
@@ -48,6 +50,8 @@ const routes: Routes = [
   { path: 'director/asignatura-form', component: AsignaturaFormComponent},
   { path: 'estudiante/perfil', component: PerfilComponent},
   { path: 'reset', component: ResetComponent},
+  { path: 'director/asignatura-editar', component: AsignaturaEditarComponent},
+  { path: 'director/carrera-editar', component: CarreraEditarComponent},
 
     { path: '**', redirectTo: '' }
 
