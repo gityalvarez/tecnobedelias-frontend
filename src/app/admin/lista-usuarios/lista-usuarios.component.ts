@@ -26,10 +26,10 @@ export class ListaUsuariosComponent implements OnInit {
     );    
   }
 
-  actualizarUsuario(usuario){
+  editarUsuario(usuario){
+    console.log('entre al editar usaurio con el usuario '+usuario.nombre)
     this.usuarioService.set(usuario);
-    this.router.navigate(['/']);
-    
+    this.router.navigate(['administrador/usuario-editar'])
   }
 
 

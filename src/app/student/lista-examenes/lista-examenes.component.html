@@ -2,8 +2,8 @@
 <accordion [closeOthers]="true">
     <div *ngFor="let carrera of carreras" >
         <accordion-group  heading="{{carrera.nombre}}">
+            <accordion [closeOthers]="true">
             <div class="center" *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera">
-              <accordion [closeOthers]="true">
                 <accordion-group  heading="{{asignaturaCarrera.asignatura.nombre}}">                  
                     <div class="container">
                         <table class="table table-striped" >
@@ -27,8 +27,8 @@
                         </table>
                     </div>           
                 </accordion-group>
-              </accordion>
             </div>
+        </accordion>
           </accordion-group>
         </div>
       </accordion>

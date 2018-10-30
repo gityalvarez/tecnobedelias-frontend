@@ -75,3 +75,47 @@ export class CalendarioComponent implements OnInit  {
   }
   */
 }
+
+
+
+/*this.calendarOptions = {
+        editable: true,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        selectable: true,
+        events: []
+      };
+
+      this.inscripcionService.consultaCursos().subscribe(
+        (cursos)=>{
+          this.inscripcionService.consultaExamen().subscribe(
+            (examenes)=>{
+              this.eventService.getEvents(cursos,examenes).subscribe(data => {
+                this.events = data;
+              });
+            }
+          )
+        }
+      )
+    
+  }
+
+  loadEvents() {
+    this.inscripcionService.consultaCursos().subscribe(
+      (cursos)=>{
+        this.inscripcionService.consultaExamen().subscribe(
+          (examenes)=>{
+            this.eventService.getEvents(cursos,examenes).subscribe(data => {
+              this.events = data;
+            });
+          }
+        )
+      }
+    )
+  }
+
+  */

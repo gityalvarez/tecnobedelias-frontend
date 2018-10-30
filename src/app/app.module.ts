@@ -56,6 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PerfilComponent } from './student/perfil/perfil.component';
 import { AsignaturaEditarComponent } from './director/asignatura-editar/asignatura-editar.component';
 import { CarreraEditarComponent } from './director/carrera-editar/carrera-editar.component';
+import { UsuarioEditarComponent } from './admin/usuario-editar/usuario-editar.component';
 
 
 
@@ -89,7 +90,8 @@ import { CarreraEditarComponent } from './director/carrera-editar/carrera-editar
     HelloComponent,
     PerfilComponent,
     AsignaturaEditarComponent,
-    CarreraEditarComponent
+    CarreraEditarComponent,
+    UsuarioEditarComponent
 
   ],
   imports: [

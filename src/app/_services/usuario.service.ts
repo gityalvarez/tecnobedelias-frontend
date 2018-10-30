@@ -30,6 +30,10 @@ export class UsuarioService {
     return this.http.post(environment.API+'/usuario/crear/'+rol,usuario);
   }
 
+  modificarUsuario(usuario:Usuario):Observable<any>{
+    return this.http.post(environment.API+'/usuario/modificar',usuario,{params:{'usuarioId': usuario.id.toString()}});
+  }
+
   cambiarPassword(password,resetToken):Observable<any>{
     console.log('entre al cambiarPassword con el password '+password);
     return this.http.get(environment.API+'/usuario/reset',{params:{'resetToken': resetToken,'password':password}});

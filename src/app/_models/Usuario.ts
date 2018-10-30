@@ -1,3 +1,5 @@
+import { Rol } from "./Rol";
+
 export class Usuario{
     id:number;
     nombre:string;
@@ -7,6 +9,7 @@ export class Usuario{
     email:string;
     fechaNacimiento:Date;
     cedula:number;
-    foto:string
+    foto:string;
+    roles:Rol[];
 
 }

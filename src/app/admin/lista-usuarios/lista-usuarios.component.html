@@ -11,6 +11,7 @@
           <th>Apellido</th>
           <th>Username</th>
           <th>Email</th>
+          <th>Rol</th>
           <th>Operacion </th>
       </thead>
       <tbody id="test">
@@ -19,10 +20,11 @@
               <td>{{usuario.nombre}}</td>
               <td>{{usuario.apellido}}</td>
               <td>{{usuario.username}}</td>
-              <td>{{usuario.email}}</td>
+              <td>{{usuario.email}}</td>                
+              <td *ngFor="let rol of usuario.roles">{{rol.nombre}}</td>
               
-              <td><button class="btn btn-danger" (click)="borrarUsuario(usuario)" confirm="Are you sure?" >Delete</button>
-                  <button class="btn btn-primary" (click)="updateUser(user)">Edit</button></td>
+              <td><button class="btn btn-danger" (click)="borrarUsuario(usuario)" confirm="Are you sure?" >Borrar</button>
+                  <button class="btn btn-primary" (click)="editarUsuario(usuario)">Editar</button></td>
 
           </tr>
       </tbody>

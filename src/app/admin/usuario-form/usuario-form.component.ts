@@ -81,6 +81,10 @@ export class UsuarioFormComponent implements OnInit {
     )
 }
 
+cancelar(){
+  this.router.navigate(['/administrador']);
+}
+
 }
 
 
