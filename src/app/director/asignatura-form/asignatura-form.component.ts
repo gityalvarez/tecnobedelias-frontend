@@ -32,6 +32,10 @@ export class AsignaturaFormComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+  cancelar(){
+    this.router.navigate(['/director']);
+  }
+
   onSubmit(){
     this.submitted = true;
 

@@ -14,7 +14,7 @@ export class PerfilComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private usuarioService: UsuarioService,private formBuilder: FormBuilder) { 
+  constructor(private usuarioService: UsuarioService,private formBuilder: FormBuilder, private router:Router) { 
     this.estudiante = new Usuario();
   }
 
@@ -41,6 +41,10 @@ export class PerfilComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls; }
+
+  cancelar(){
+    this.router.navigate(['/director']);
+  }
 
 
   onSelect(event){

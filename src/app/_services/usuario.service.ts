@@ -27,7 +27,7 @@ export class UsuarioService {
 
   agregarUsuario(rol:string,usuario:Usuario):Observable<any>{
     console.log('entre al agregarUsuarioService con el usuario '+usuario.username + ' y el pass '+usuario.password, 'y el rol '+rol);
-    return this.http.post(environment.API+'/usuario/crear/'+rol,usuario);
+    return this.http.post(environment.API+'/usuario/crearbien/'+rol,usuario);
   }
 
   modificarUsuario(usuario:Usuario):Observable<any>{

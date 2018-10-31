@@ -46,7 +46,7 @@ export class CalendarioComponent implements OnInit {
         );
       }
     );
-    this.ucCalendar.fullCalendar('render');
+    //this.ucCalendar.fullCalendar('render');
   }
   onRender() {
     this.ucCalendar.fullCalendar('render');
