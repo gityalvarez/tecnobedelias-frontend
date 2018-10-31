@@ -1,23 +1,23 @@
 <div class="container">
 
-    <table class="table table-striped">
-        <thead>
-            <th>Nombre</th>
-            <th>Codigo</th>
-            <th>Descripcion</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let asignatura of asignaturas">
-                
-                <td>{{asignatura.nombre}}</td>
-                <td>{{asignatura.codigo}}</td>
-                <td>{{asignatura.descripcion}}</td>              
-                <td *ngIf="esDirector"><button class="btn btn-danger" (click)="borrarAsignatura(asignatura)" confirm="Are you sure?" >Borrar</button></td>
-                <td *ngIf="esDirector"><button class="btn btn-primary" (click)="editarAsignatura(asignatura)">Editar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <div *ngIf="esDirector">
-        <button class="btn btn-primary"  (click)="agregarAsignatura()" >Nuevo</button>
-    </div>
+  <table class="table table-striped">
+    <thead>
+      <th>Nombre</th>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asignatura of asignaturas">
+
+        <td>{{asignatura.nombre}}</td>
+        <td>{{asignatura.codigo}}</td>
+        <td>{{asignatura.descripcion}}</td>
+        <td *ngIf="esDirector"><button class="btn btn-warning" (click)="editarAsignatura(asignatura)">Editar</button></td>
+        <td *ngIf="esDirector"><button class="btn btn-danger" (click)="borrarAsignatura(asignatura)" confirm="Are you sure?">Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="esDirector">
+    <button class="btn btn-primary" (click)="agregarAsignatura()">Nueva</button>
   </div>
+</div>

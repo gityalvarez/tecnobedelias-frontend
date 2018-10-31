@@ -1,33 +1,29 @@
-
-<div class="container" >
+<div class="container">
 
   <input type="text" class="form-control" name="searchString" placeholder="Buscar..." [(ngModel)]="searchString">
 
-
   <table class="table table-striped">
-      <thead >
-          
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Rol</th>
-          <th>Operacion </th>
-      </thead>
-      <tbody id="test">
-          <tr *ngFor="let usuario of usuarios | filter : ['nombre','apellido','username', 'email'] : searchString; let i = index">
-              
-              <td>{{usuario.nombre}}</td>
-              <td>{{usuario.apellido}}</td>
-              <td>{{usuario.username}}</td>
-              <td>{{usuario.email}}</td>                
-              <td *ngFor="let rol of usuario.roles">{{rol.nombre}}</td>
-              
-              <td><button class="btn btn-danger" (click)="borrarUsuario(usuario)" confirm="Are you sure?" >Borrar</button>
-                  <button class="btn btn-primary" (click)="editarUsuario(usuario)">Editar</button></td>
+    <thead>
 
-          </tr>
-      </tbody>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Username</th>
+      <th>Email</th>
+    </thead>
+    <tbody id="test">
+      <tr *ngFor="let usuario of usuarios | filter : ['nombre','apellido','username', 'email'] : searchString; let i = index">
+
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.apellido}}</td>
+        <td>{{usuario.username}}</td>
+        <td>{{usuario.email}}</td>
+        <td *ngFor="let rol of usuario.roles">{{rol.nombre}}</td>
+
+        <td><button class="btn btn-warning" (click)="editarUsuario(usuario)">Editar</button></td>
+        <td><button class="btn btn-danger" (click)="borrarUsuario(usuario)" confirm="Are you sure?">Borrar</button>
+
+      </tr>
+    </tbody>
   </table>
-  <button class="btn btn-primary" (click)="agregarUsuario()" >Nuevo</button>
+  <button class="btn btn-primary" (click)="agregarUsuario()">Nuevo</button>
 </div>

@@ -1,50 +1,51 @@
 <accordion [closeOthers]="true">
-    <div *ngFor="let carrera of carreras" >
-      <accordion-group heading="{{carrera.nombre}}" (isOpenChange)='cargarListas(carrera)'>  
-        <div class="center" >
-          <p-pickList [responsive]="true" sourceHeader="Asignaturas" targetHeader="Faltantes" 
-          [source]="asignaturas" [target]="asignaturasFaltantes" (onMoveToSource)="onMoveToSource($event)" (onMoveToTarget)="onMoveToTarget($event)">
-              <ng-template let-asignatura pTemplate="item">
-                  <div class="ui-helper-clearfix">
-                      <div >{{asignatura.nombre}}</div>
-                  </div>
-              </ng-template>
-          </p-pickList>  
-        </div>  
-      </accordion-group>
-    </div>   
-  </accordion>
-  <p-dialog header="Datos de la Asignatura" [(visible)]="display">
-      <form id="registerForm">
-        <div class="form-group">
-          <label>Creditos</label>
-          <input   name="creditos" [(ngModel)]="asignaturaCarrera.creditos" />
-        </div >
-        <div class="form-group">
-          <label>Nota de Exoneracion</label>
-          <input  name="notaMinimaExonera" [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
-        </div>
-        <div class="form-group">
-          <label>Nota Minima para Examen</label>
-          <input  name="notaMinimaExamen" [(ngModel)]="asignaturaCarrera.notaMinimaExamen"/>
-        </div>
-        <div class="form-group">
-          <label>Nota para Salvar Examen</label>
-          <input  name="notaSalvaExamen" [(ngModel)]="asignaturaCarrera.notaSalvaExamen"/>
-        </div>
-        <div class="form-group">
-          <label>Nota Maxima</label>
-          <input  name="notaMaxima" [(ngModel)]="asignaturaCarrera.notaMaxima"/>
-        </div>
-      </form>
-      <p-footer>
-          <button type="button" pButton icon="pi pi-check" (click)="onSubmit()" label="Agregar"></button>
-          <button type="button" pButton icon="pi pi-close" (click)="cancelDialog()" label="Cancelar" class="ui-button-secondary"></button>
-      </p-footer>
-  </p-dialog>
-  
-  
-  <!--;carrera.asignaturaCarrera.push(asignatura.asignaturaCarrera)
+  <div *ngFor="let carrera of carreras">
+    <accordion-group heading="{{carrera.nombre}}" (isOpenChange)='cargarListas(carrera)'>
+      <div class="center">
+        <p-pickList [responsive]="true" sourceHeader="Asignaturas" targetHeader="Faltantes" [source]="asignaturas"
+          [target]="asignaturasFaltantes" (onMoveToSource)="onMoveToSource($event)" (onMoveToTarget)="onMoveToTarget($event)"
+          [showSourceControls]="false" [showTargetControls]="false">
+          <ng-template let-asignatura pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <div>{{asignatura.nombre}}</div>
+            </div>
+          </ng-template>
+        </p-pickList>
+      </div>
+    </accordion-group>
+  </div>
+</accordion>
+<p-dialog header="Datos de la Asignatura" [(visible)]="display">
+  <form id="registerForm">
+    <div class="form-group">
+      <label>Creditos</label>
+      <input name="creditos" [(ngModel)]="asignaturaCarrera.creditos" />
+    </div>
+    <div class="form-group">
+      <label>Nota de Exoneracion</label>
+      <input name="notaMinimaExonera" [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
+    </div>
+    <div class="form-group">
+      <label>Nota Minima para Examen</label>
+      <input name="notaMinimaExamen" [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+    </div>
+    <div class="form-group">
+      <label>Nota para Salvar Examen</label>
+      <input name="notaSalvaExamen" [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
+    </div>
+    <div class="form-group">
+      <label>Nota Maxima</label>
+      <input name="notaMaxima" [(ngModel)]="asignaturaCarrera.notaMaxima" />
+    </div>
+  </form>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="onSubmit()" label="Agregar"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="cancelDialog()" label="Cancelar" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+
+<!--;carrera.asignaturaCarrera.push(asignatura.asignaturaCarrera)
   
     (onMoveToSource)="agregarAsignatura(carrera,$event.items)"
   

@@ -13,8 +13,8 @@
               <td>{{carrera.descripcion}}</td>
               <td>{{carrera.creditosMinimos}}</td>
               <div *ngIf="esDirector">
+                  <td><button class="btn btn-warning" (click)="editarCarrera(carrera)">Editar</button></td>
                   <td><button class="btn btn-danger" (click)="borrarCarrera(carrera)" confirm="Are you sure?" >Borrar</button></td>
-                  <td><button class="btn btn-primary" (click)="editarCarrera(carrera)">Editar</button></td>
               </div> 
               <div *ngIf="esEstudiante">
                   <div *ngIf="estaInscripto(carrera); else inscripcion">
@@ -30,7 +30,7 @@
       </tbody>
   </table>
   <div *ngIf="esDirector">
-      <button class="btn btn-primary" (click)="agregarCarrera()" >Nuevo</button>
+      <button class="btn btn-primary" (click)="agregarCarrera()" >Nueva</button>
   </div>
 </div>
 

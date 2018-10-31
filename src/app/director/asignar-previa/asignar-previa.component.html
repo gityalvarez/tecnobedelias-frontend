@@ -1,22 +1,22 @@
 <accordion [closeOthers]="true">
-  
-  <div *ngFor="let carrera of carreras" >
-    <accordion-group heading="{{carrera.nombre}}" (isOpenChange)='cargarAsignaturas(carrera)'>   
+
+  <div *ngFor="let carrera of carreras">
+    <accordion-group heading="{{carrera.nombre}}" (isOpenChange)='cargarAsignaturas(carrera)'>
       <accordion [closeOthers]="true">
-        <div *ngFor="let asignatura of asignaturas;let i = index" >
+        <div *ngFor="let asignatura of asignaturas;let i = index">
           <accordion-group heading="{{asignatura.nombre}}" (isOpenChange)='cargarPrevias(asignatura)'>
-            <p-pickList [responsive]="true" sourceHeader="Previas" targetHeader="Previas a Agregar" [source]="previas" [target]="previasPosibles"
-                    (onMoveToSource)="onMoveToSource($event)" (onMoveToTarget)="onMoveToTarget($event)">
-                <ng-template let-previa pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div >{{previa.nombre}}</div>
-                    </div>
-                </ng-template>
+            <p-pickList [responsive]="true" sourceHeader="Previas" targetHeader="Previas a Agregar" [source]="previas"
+              [target]="previasPosibles" (onMoveToSource)="onMoveToSource($event)" (onMoveToTarget)="onMoveToTarget($event)"
+              [showSourceControls]="false" [showTargetControls]="false">
+              <ng-template let-previa pTemplate="item">
+                <div class="ui-helper-clearfix">
+                  <div>{{previa.nombre}}</div>
+                </div>
+              </ng-template>
             </p-pickList>
           </accordion-group>
         </div>
-      </accordion>   
+      </accordion>
     </accordion-group>
-  </div>   
+  </div>
 </accordion>
-
