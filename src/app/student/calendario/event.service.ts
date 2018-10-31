@@ -4,25 +4,26 @@ import { of as observableOf } from 'rxjs/observable/of';
 import { Curso } from 'src/app/_models/Curso';
 import { Examen } from 'src/app/_models/Examen';
 // import 'rxjs/add/observable/of';
+
 @Injectable()
 export class EventService {
-    public getEvents(cursos:Curso[],examenes:Examen[]): Observable<any> {
-        //const dateObj = new Date();
-        //const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
-        const data: any = [];        
-        
-        cursos.forEach((curso)=>{
+    public getEvents(cursos: Curso[], examenes: Examen[]): Observable<any> {
+        // const dateObj = new Date();
+        // const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
+        const data: any = [];
+
+        cursos.forEach((curso) => {
             data.push({
-                title: 'Comienzo de curso de '+curso.nombreAsignatura,
+                title: 'Comienzo de curso de ' + curso.nombreAsignatura,
                 start: curso.fechaInicio
-            })
-        })
-        examenes.forEach((examen)=>{
+            });
+        });
+        examenes.forEach((examen) => {
             data.push({
-                title: 'Comienzo de curso de '+examen.nombreAsignatura,
+                title: 'Comienzo de curso de ' + examen.nombreAsignatura,
                 start: examen.fecha
-            })
-        })
+            });
+        });
         return observableOf(data);
     }
 }

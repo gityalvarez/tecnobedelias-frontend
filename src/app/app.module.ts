@@ -46,7 +46,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalendarioComponent } from './student/calendario/calendario.component';
-import { HelloComponent } from './student/calendario/hello.component';
 import { EventService } from './student/calendario/event.service';
 import * as $ from 'jquery';
 import * as go from 'gojs';
@@ -87,7 +86,6 @@ import { UsuarioEditarComponent } from './admin/usuario-editar/usuario-editar.co
     ListaExamenesComponent,
     CargarUsuariosComponent,
     CalendarioComponent,
-    HelloComponent,
     PerfilComponent,
     AsignaturaEditarComponent,
     CarreraEditarComponent,

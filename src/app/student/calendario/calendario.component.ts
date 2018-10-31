@@ -7,9 +7,9 @@ import { InscripcionService } from 'src/app/_services/inscripcion.service';
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
-  styleUrls: [ './calendario.component.css' ]
+  styleUrls: ['./calendario.component.css']
 })
-export class CalendarioComponent implements OnInit  {
+export class CalendarioComponent implements OnInit {
   calendarOptions: Options;
   displayEvent: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
@@ -17,11 +17,21 @@ export class CalendarioComponent implements OnInit  {
 
   ngOnInit() {
     this.inscripcionService.consultaCursos().subscribe(
-      (cursos)=>{
+      (cursos) => {
         this.inscripcionService.consultaExamen().subscribe(
-          (examenes)=>{
-            this.eventService.getEvents(cursos,examenes).subscribe(data => {
+          (examenes) => {
+            this.eventService.getEvents(cursos, examenes).subscribe(data => {
               this.calendarOptions = {
+                // defaultView: 'week',
+                // lang: 'es',
+                locale: 'es',
+                buttonText: {
+                  today: 'Hoy',
+                  month: 'Mes',
+                  week: 'Semana',
+                  day: 'Día',
+                  list: 'Lista'
+                },
                 editable: true,
                 eventLimit: false,
                 header: {
@@ -33,10 +43,20 @@ export class CalendarioComponent implements OnInit  {
               };
             });
           }
-        )
+        );
       }
-    )
+    );
+    this.ucCalendar.fullCalendar('render');
   }
+  onRender() {
+    this.ucCalendar.fullCalendar('render');
+  }
+  onShow() {
+    setTimeout(() => { this.ucCalendar.fullCalendar('changeView', 'week'); }, 1000);
+    setTimeout(() => { this.ucCalendar.fullCalendar('render'); }, 1000);
+    this.ucCalendar.fullCalendar('render');
+  }
+
   clickButton(model: any) {
     this.displayEvent = model;
   }
@@ -69,11 +89,6 @@ export class CalendarioComponent implements OnInit  {
     };
     this.displayEvent = model;
   }
-
-  /*ngDoCheck(){
-    this.ucCalendar.fullCalendar('refetchEvents')
-  }
-  */
 }
 
 
@@ -101,7 +116,7 @@ export class CalendarioComponent implements OnInit  {
           )
         }
       )
-    
+
   }
 
   loadEvents() {
