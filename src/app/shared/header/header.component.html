@@ -1,28 +1,27 @@
-
-
 <nav class="navbar navbar-expand-sm  navbar-light bg-primary">
-    <!-- Brand -->
-    <a class="navbar-brand" href="{{rol}}"><img src="assets/img/BedeliasLogoV1.png" class="rounded" width="65" height="65"></a>
-  
-    <!-- Links -->
+  <!-- Brand -->
+  <a class="navbar-brand" href="{{rol}}"><img src="assets/img/TecnoLogoBlanco.png" height="40"></a>
 
-      <!-- Dropdown -->
-      <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <div *ngIf="rol === 'estudiante'">
-          <img [src]="foto" class="rounded-circle" width="65" height="65">
+  <!-- Links -->
+
+  <!-- Dropdown -->
+  <ul class="navbar-nav ml-auto">
+    <div *ngIf="rol === 'estudiante'">
+      <img [src]="foto" class="rounded-circle" width="40" height="40">
+    </div>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{username}}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div *ngIf="rol=='estudiante'">
+          <a class="dropdown-item" href="estudiante/perfil">Perfil</a>
+          <div class="dropdown-divider"></div>
         </div>
-          <a class="nav-link dropdown-toggle text-light"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{username}}
-          </a>
-          <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-            <div *ngIf="rol=='estudiante'">
-              <a class="dropdown-item" href="estudiante/perfil">Perfil</a>
-              <div class="dropdown-divider"></div>
-            </div>
-            <a class="dropdown-item" (click)="logout()" href="">Logout</a>
-          </div>
-        </li> 
-      </ul>     
-    
-  </nav>
+        <a class="dropdown-item" (click)="logout()" href="">Salir</a>
+      </div>
+    </li>
+  </ul>
+
+</nav>
