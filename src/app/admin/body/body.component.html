@@ -1,17 +1,25 @@
 <div class="row">
-    <div>
-      <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Usuarios</a>
-        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Cargar Usuarios</a>
-      </div>
-    </div>
   
-    <div class="col-8">
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><h1 class="text-center">LISTA DE USUARIOS</h1><app-lista-usuarios></app-lista-usuarios></div>
-        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><h1 class="text-center">CARGAR ARCHIVO DE USUARIOS</h1><app-cargar-usuarios></app-cargar-usuarios></div>
-      </div>
+  <div>
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home"
+        role="tab" aria-controls="home">Usuarios</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages"
+        role="tab" aria-controls="messages">Cargar Usuarios</a>
     </div>
-  
   </div>
 
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+        <h1 class="text-center">LISTA DE USUARIOS</h1>
+        <app-lista-usuarios></app-lista-usuarios>
+      </div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+        <h1 class="text-center">CARGAR ARCHIVO DE USUARIOS</h1>
+        <app-cargar-usuarios></app-cargar-usuarios>
+      </div>
+    </div>
+  </div>
+
+</div>
