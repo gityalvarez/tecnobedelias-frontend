@@ -8,6 +8,7 @@ import { CarreraService } from 'src/app/_services/carrera.service';
 import { Carrera } from 'src/app/_models/Carrera';
 import { Asignatura } from 'src/app/_models/Asignatura';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { hypenatePropsObject } from '@angular/animations/browser/src/render/shared';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -27,6 +28,8 @@ username:string;
 estudiante:Object;
 cursosEstudiante:Curso[];
 customClass: string = 'panel-success';
+hoy = new Date("2018/12/10").toISOString();
+
 constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
                      private usuarioService:UsuarioService,private tokenStorage:TokenStorage,
                      private modalService:BsModalService) { }
@@ -47,7 +50,7 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
         this.cursosEstudiante = cursos
       }
     )
-
+      
   }
 
   inscripcionACurso(curso:Curso){
@@ -95,6 +98,7 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
+
 
 
     

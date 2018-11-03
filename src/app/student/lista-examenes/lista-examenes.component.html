@@ -14,14 +14,34 @@
                             <tbody>
                                 <tr *ngFor="let examen of asignaturaCarrera.asignatura.examenes">
                                     
-                                    <td>{{examen.fecha}}</td>
+                                    <td>{{examen.fecha | date}}</td>
                                     <td>{{examen.hora}}</td>
-                                    <div *ngIf="!(estaInscripto(examen)); else desistir">
-                                            <td><button class="btn btn-primary" (click)="inscripcionAExamen(examen)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
+                                    <div *ngIf="!(hoy > examen.fecha);else calificaciones">
+                                    
+                                        <div *ngIf="!(estaInscripto(examen)); else desistir">
+                                                <td><button class="btn btn-primary" (click)="inscripcionAExamen(examen)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
                                         </div>
                                         <ng-template #desistir>
-                                              <td><button class="btn btn-danger" (click)="desistirAExamen(examen)" confirm="Seguro que desea desistir?" >Desistir</button></td>
-                                        </ng-template>
+                                            <td><button class="btn btn-danger" (click)="desistirAExamen(examen)" confirm="Seguro que desea desistir?" >Desistir</button></td>
+                                        </ng-template>                               
+                                    </div>
+                                    <ng-template #calificaciones>
+                                            <td><button class="btn btn-primary" (click)="openModal(templateCalificaciones,examen.estudianteExamen)" >Ver Calificaciones</button></td>
+                                            <td></td>
+                                    </ng-template>
+                                    <ng-template #templateCalificaciones>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title pull-left">Calificaciones</h4>
+                                            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div *ngFor="let estudianteExamen of examen.estudianteExamen">
+                                                {{estudianteExamen.nombre}}    {{estudianteExamen.apellido}}     {{estudianteExamen.nota}}
+                                            </div>
+                                        </div>
+                                    </ng-template>
                                 </tr>
                             </tbody>
                         </table>
