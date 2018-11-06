@@ -1,11 +1,18 @@
 <div *ngIf="displayEvent">
   <div *ngIf="displayEvent.event">
-    <p>Evento : {{displayEvent.event.title | json}}</p>
+    <p>Evento : {{displayEvent.event.title | json}} {{displayEvent.event.type | json}} </p>
 
   </div>
 </div>
 
 <div *ngIf="calendarOptions">
-  <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
-    (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+  <!-- <ng-template #tipContent>Hello, <b>{{displayEvent.event.title}}</b>!</ng-template> -->
+  <ng-fullcalendar #ucCalendar [options]="calendarOptions"
+    (eventMouseOver)="eventMouseOver($event.detail)"
+    (eventClick)="eventClick($event.detail)"
+    (eventDrop)="updateEvent($event.detail)"
+    (eventResize)="updateEvent($event.detail)"
+    (clickButton)="clickButton($event.detail)">
+  </ng-fullcalendar>
+  <!-- [ngbTooltip]="tipContent" > -->
 </div>

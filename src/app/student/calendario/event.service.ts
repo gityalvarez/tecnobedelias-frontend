@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { of as observableOf } from 'rxjs/observable/of';
 import { Curso } from 'src/app/_models/Curso';
 import { Examen } from 'src/app/_models/Examen';
+import * as moment from 'moment';
 // import 'rxjs/add/observable/of';
 
 @Injectable()
@@ -14,14 +15,20 @@ export class EventService {
 
         cursos.forEach((curso) => {
             data.push({
-                title: 'Comienzo de curso de ' + curso.nombreAsignatura,
-                start: curso.fechaInicio
+                title: curso.nombreAsignatura + ' (curso)',
+                type: 'Inicio de Curso',
+                allDay: true,
+                start: moment(curso.fechaInicio).format('YYYY-MM-DD'),
+                color: '#690'
             });
         });
         examenes.forEach((examen) => {
             data.push({
-                title: 'Examen de ' + examen.nombreAsignatura,
-                start: examen.fecha
+                title: examen.nombreAsignatura + ' (examen)',
+                type: 'Fecha de Examen',
+                allDay: true,
+                start: examen.fecha,
+                color: '#C33'
             });
         });
         return observableOf(data);
