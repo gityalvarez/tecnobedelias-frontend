@@ -20,7 +20,7 @@ export class EventService {
         });
         examenes.forEach((examen) => {
             data.push({
-                title: 'Comienzo de curso de ' + examen.nombreAsignatura,
+                title: 'Examen de ' + examen.nombreAsignatura,
                 start: examen.fecha
             });
         });

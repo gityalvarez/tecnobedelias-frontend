@@ -26,7 +26,8 @@ export class ListaExamenesComponent implements OnInit {
   username:string;
   estudiante:Object;
   examenesEstudiante:Examen[];
-  hoy = new Date("2018/12/10").toISOString();
+  fecha = Date.now()
+  hoy = new Date(this.fecha).toISOString();
 
   constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
     private usuarioService:UsuarioService,private tokenStorage:TokenStorage,

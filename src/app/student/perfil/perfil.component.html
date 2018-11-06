@@ -34,13 +34,15 @@
                                     <div *ngIf="f.email.errors.email">Email debe ser una direccion valida</div>
                                 </div>
                             </div>
+                            <!--
                             <div class="form-group">
                                     <label>Fecha de Nacimiento</label>
                                     <input type="text" formControlName="fechaNacimiento" class="form-control" [(ngModel)]="estudiante.fechaNacimiento" [ngClass]="{ 'is-invalid': (submitted || f.fechaNacimiento.touched) && f.fechaNacimiento.errors}"  bsDatepicker [bsConfig]="dpConfig" placement="bottom"/>
                                     <div *ngIf="f.fechaNacimiento.invalid && (f.fechaNacimiento.dirty || f.fechaNacimiento.touched || submitted)  " class="invalid-feedback">
-                                        <!--<div *ngIf="f.fechaNacimiento.errors.required">Nombre es requerido</div>-->
-                                    </div>
+                                    -->     <!--<div *ngIf="f.fechaNacimiento.errors.required">Nombre es requerido</div>-->
+                              <!--      </div>
                             </div>
+                        -->
                             <div class="form-group">
                                     <label>Username</label>
                                     <input type="text"  formControlName="username" class="form-control"  [(ngModel)]="estudiante.username" [ngClass]="{ 'is-invalid': (submitted || f.username.touched) && f.username.errors }" />
@@ -61,7 +63,7 @@
                                     <h6>{{estudiante.cedula | cedula}}</h6>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary">Agregar</button>
+                                <button class="btn btn-primary">Modificar</button>
                                 <button (click)="cancelar()" class="btn btn-default">Cancelar</button>
 
                             </div>

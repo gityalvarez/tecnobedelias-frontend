@@ -28,7 +28,8 @@ username:string;
 estudiante:Object;
 cursosEstudiante:Curso[];
 customClass: string = 'panel-success';
-hoy = new Date("2018/12/10").toISOString();
+fecha = Date.now()
+hoy = new Date(this.fecha).toISOString();
 
 constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
                      private usuarioService:UsuarioService,private tokenStorage:TokenStorage,

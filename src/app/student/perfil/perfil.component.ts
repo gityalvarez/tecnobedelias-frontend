@@ -32,7 +32,7 @@ export class PerfilComponent implements OnInit {
       username: [{value:'', disabled: true}],
       password: [{value:'', disabled: true}],
       cedula: [{value:'', disabled: true}],
-      fechaNacimiento: [{value:'', disabled: true}],
+      //fechaNacimiento: [{value:'', disabled: true}],
       foto: []
       //rol:['']
     });
