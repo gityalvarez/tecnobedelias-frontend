@@ -9,6 +9,12 @@
   max-width: 100% !important;
 }
 
+.navbar {
+  /* background-image: linear-gradient(to bottom, #460, #690); */
+  /* background-color: #690; */
+  background-color: #460;
+}
+
 #nav-tabContent {
   background-color: white;
   border-radius: 5px;
