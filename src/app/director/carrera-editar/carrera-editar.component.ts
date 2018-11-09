@@ -22,8 +22,13 @@ export class CarreraEditarComponent implements OnInit {
 
   editar(){
     this.carreraService.modificarCarrera(this.carrera).subscribe(
-      (data)=>{console.log('pude modificar '+data)
-      this.router.navigate(['/director']);
+      (data)=>{
+        if(data.estado){
+          alert(data.mensaje)
+          this.router.navigate(['/director']);
+        }else{
+          alert(data.mensaje)
+        }
     },
     (error)=>console.log(error)
     )

@@ -10,7 +10,7 @@ import {Location} from '@angular/common'
   styleUrls: ['./asignatura-editar.component.css']
 })
 export class AsignaturaEditarComponent implements OnInit {
-private asignatura : Asignatura;
+public asignatura : Asignatura;
   constructor(private asignaturaService:AsignaturaService, private router : Router) { }
 
   ngOnInit() {
@@ -24,8 +24,13 @@ private asignatura : Asignatura;
 
   editar(){
     this.asignaturaService.modificarAsignatura(this.asignatura).subscribe(
-      (data)=>{console.log('pude modificar '+data)
-      this.router.navigate(['/director']);
+      (data)=>{
+        if(data.estado){
+          alert(data.mensaje)
+          this.router.navigate(['/director']);
+        }else{
+          alert(data.mensaje)
+        }
     },
     (error)=>console.log(error)
     )

@@ -38,8 +38,13 @@ export class ListaUsuariosComponent implements OnInit {
     if(window.confirm('Seguro Quiere eliminar a '+usuario.username+"?")){
       this.usuarioService.borrarUsuario(usuario).subscribe(
         (data)=>{
-          console.log('a la vuelta del suscribe');
-          this.usuarios.splice(this.usuarios.indexOf(usuario),1);
+          if(data.estado){
+            alert(data.mensaje)            
+            this.usuarios.splice(this.usuarios.indexOf(usuario),1);
+          }else{
+            alert(data.mensaje)
+          }
+
         }
       );
     }

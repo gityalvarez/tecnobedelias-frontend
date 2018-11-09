@@ -54,8 +54,13 @@ export class ListaExamenesComponent implements OnInit {
   inscripcionAExamen(examen:Examen){
     this.inscripcionService.inscripcionAExamen(examen).subscribe(
       (data)=>{
-        alert("La inscripcion al examen fue exitosa")
-        this.examenesEstudiante.push(examen)
+        if (data.estado){
+
+          alert(data.mensaje)
+          this.examenesEstudiante.push(examen)
+        }else{
+          alert(data.mensaje)
+        }
       },
       (error)=>{
         alert("No se pudo inscribir al examen")
@@ -66,8 +71,13 @@ export class ListaExamenesComponent implements OnInit {
   desistirACurso(examen:Examen){
     this.inscripcionService.desistirAExamen(examen).subscribe(
       (data)=>{
-        alert("Pudo desistir del examen correctamente")
-        this.examenesEstudiante.splice(this.examenesEstudiante.indexOf(examen),1)
+        if(data.estado){
+
+          alert(data.mensaje)
+          this.examenesEstudiante.splice(this.examenesEstudiante.indexOf(examen),1)
+        }else{
+          alert(data.mensaje)
+        }
       },
       (error)=>{
         alert("No pudo desistir del curso")

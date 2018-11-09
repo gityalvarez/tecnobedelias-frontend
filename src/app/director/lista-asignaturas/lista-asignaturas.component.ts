@@ -38,11 +38,11 @@ export class ListaAsignaturasComponent implements OnInit {
     if(window.confirm('Seguro Quiere eliminar a '+asignatura.nombre+"?")){
       this.asignaturaService.borrarAsignatura(asignatura).subscribe(
         (data)=>{
-          if(data){
-            alert("Se eliminó la asignatura "+asignatura.nombre+" correctamente");
+          if(data.estado){
+            alert(data.mensaje);
             this.asignaturas.splice(this.asignaturas.indexOf(asignatura),1);           
           }else{
-            alert("No se pudo eliminar la carrera "+asignatura.nombre);
+            alert(data.mensaje);
           }
         }
       );

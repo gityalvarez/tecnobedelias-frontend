@@ -56,11 +56,11 @@ export class ListaCarrerasComponent implements OnInit {
     if(window.confirm('Seguro Quiere eliminar a '+carrera.nombre+"?")){
       this.carreraService.borrarCarrera(carrera).subscribe(
         (data)=>{
-          if(data){
-            alert("La carrera "+carrera.nombre+ " se elimino correctamente");
+          if(data.estado){
+            alert(data.mensaje);
             this.carreras.splice(this.carreras.indexOf(carrera),1);
           }else{
-            alert("No se pudo eliminar la carrera "+carrera.nombre);
+            alert(data.mensaje);
           }
         }
       );
@@ -76,11 +76,11 @@ export class ListaCarrerasComponent implements OnInit {
     if(window.confirm('Seguro Quiere Inscribirse a la carrera '+carrera.nombre+"?")){
       this.inscripcionService.inscripcionACarrera(carrera).subscribe(
         (data)=>{
-          if(data){
-            alert("Se ha inscripto correctamente a la carrera "+carrera.nombre);
+          if(data.estado){
+            alert(data.mensaje);
             this.carrerasEstudiante.push(carrera)
           }else{
-            alert("No se pudo inscribir a la carrera "+carrera.nombre);
+            alert(data.mensaje);
           }
         }
       );
@@ -92,11 +92,11 @@ export class ListaCarrerasComponent implements OnInit {
     if(window.confirm('Seguro Quiere desistir a la carrera '+carrera.nombre+"?")){
       this.inscripcionService.desistirACarrera(carrera).subscribe(
         (data)=>{
-          if(data){
-            alert("Ha desistido correctamente de la carrera "+carrera.nombre);
+          if(data.estado){
+            alert(data.mensaje);
             this.carrerasEstudiante.splice(this.carrerasEstudiante.indexOf(carrera),1);
           }else{
-            alert("No pudo desistir de la carrera "+carrera.nombre);
+            alert(data.mensaje);
           }
         }
       );

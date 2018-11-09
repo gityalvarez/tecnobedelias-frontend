@@ -25,7 +25,7 @@ export class AsignaturaFormComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       nombre:['',Validators.required],
       descripcion:[''],
-      codigo:['',Validators.required],
+      //codigo:['',Validators.required],
       taller:['']
     });
   }
@@ -47,9 +47,14 @@ export class AsignaturaFormComponent implements OnInit {
     console.log('on submitt con el usuario '+this.asignatura.nombre);
     
     this.asignaturaService.agregarAsignatura(this.asignatura).subscribe(
-      (asignatura)=>{
-        console.log(this.asignatura);
-        this.router.navigate(['director']);
+      (data)=>{
+        if(data.estado){
+          alert(data.mensaje)
+          console.log(this.asignatura);
+          this.router.navigate(['director']);
+        }else{
+          alert(data.mensaje)
+        }
       }
     )
   }

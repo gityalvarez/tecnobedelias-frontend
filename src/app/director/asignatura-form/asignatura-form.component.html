@@ -17,7 +17,7 @@
                             <label>Descripcion</label>
                             <textarea formControlName="descripcion" class="form-control" [(ngModel)]="asignatura.descripcion"></textarea>
                                            
-                    
+                    <!--
                         <div class="form-group">
                             <label>Codigo</label>
                             <input type="text" formControlName="codigo" class="form-control" [(ngModel)]="asignatura.codigo" [ngClass]="{ 'is-invalid': (submitted || f.codigo.touched) && f.codigo.errors }"/>
@@ -25,6 +25,7 @@
                                 <div *ngIf="f.codigo.errors.required">Codigo es requerido</div>
                             </div>
                         </div>
+                    -->
                         <div class="form-group">
                             <label>Taller</label><p></p>
                             <p-checkbox formControlName="taller" [(ngModel)]="asignatura.taller" binary="true"></p-checkbox>

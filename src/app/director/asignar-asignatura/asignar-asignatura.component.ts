@@ -24,6 +24,7 @@ export class AsignarAsignaturaComponent implements OnInit {
   asignaturasFaltantes: Asignatura[];
   asignaturaCarrera: Asignatura_Carrera;
   submit: boolean;
+  tieneAsignaturaCarrera : boolean = false;
 
   // Pruebas para Deshabilitar tecla Control
   /*
@@ -77,12 +78,12 @@ export class AsignarAsignaturaComponent implements OnInit {
     // this.items.push(`Item ${this.items.length + 1}`);
     this.carreraService.asignarAsignatura(carrera, asignatura, asignaturaCarrera).subscribe(
       (data) => {
-        if (data) {
+        if (data['estado']) {
           console.log('agregue la asignatura  a la carrera');
-          alert('La asignatura ' + asignatura.nombre + ' fue asignada correctamente');
+          alert(data['mensaje']);
 
         } else {
-          alert('La asignatura ' + asignatura.nombre + ' no pudo ser asignada');
+          alert(data['mensaje']);
         }
       }
     );
@@ -92,13 +93,13 @@ export class AsignarAsignaturaComponent implements OnInit {
     // this.items.push(`Item ${this.items.length + 1}`);
     this.carreraService.desasignarAsignatura(carrera, asignatura).subscribe(
       (data) => {
-        if (data) {
-          console.log('elimine la asignatura  a la carrera');
-          alert('La asignatura ' + asignatura.nombre + ' fue desasignada correctamente');
+        if (data['estado']) {
+          
+          alert(data['mensaje']);
 
         } else {
           console.log('no se pudo eliminar la asignatura  a la carrera');
-          alert('La asignatura ' + asignatura.nombre + ' no pude ser desasignada correctamente');
+          alert(data['mensaje']);
           this.asignaturasFaltantes.splice(this.asignaturasFaltantes.indexOf(asignatura), 1);
           this.asignaturas.push(asignatura);
         }
@@ -109,6 +110,18 @@ export class AsignarAsignaturaComponent implements OnInit {
   onMoveToSource(event) {
     console.log('entre al onMoveToSource con ' + this.carrera.nombre + ' y asignatura ' + event.items[0]);
     this.asignatura = event.items[0];
+    //si existe una asignaturaCarrera para esa asignatura traigo los datos
+    this.asignaturaService.getAsignaturaCarrera(this.asignatura).subscribe(
+      (data)=>{
+        if (data){
+          this.asignaturaCarrera = data
+          this.tieneAsignaturaCarrera = true
+          console.log(this.tieneAsignaturaCarrera)
+        }
+      }
+    )
+
+
     this.showDialog();
     // this.agregarAsignatura(this.carrera,event.items[0],this.asignaturaCarrera)
 

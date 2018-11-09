@@ -74,9 +74,15 @@ export class UsuarioFormComponent implements OnInit {
     console.log('on submitt con el usuario '+this.usuario.username+' y el pass '+this.usuario.password);
     console.log(this.rol.nombre);
     this.usuarioService.agregarUsuario(this.rol.nombre,this.usuario).subscribe(
-      (usuario)=>{
-        console.log(usuario);
-        this.router.navigate(['administrador']);
+      (data)=>{
+        console.log(data)
+        if (data.estado){
+          alert(data.mensaje);
+          this.router.navigate(['administrador']);
+        }else{
+          alert(data.mensaje);
+          
+        }
       }
     )
 }

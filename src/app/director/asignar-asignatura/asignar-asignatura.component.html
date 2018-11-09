@@ -17,26 +17,56 @@
 </accordion>
 <p-dialog header="Datos de la Asignatura" [(visible)]="display">
   <form id="registerForm">
-    <div class="form-group">
-      <label>Creditos</label>
-      <input name="creditos" [(ngModel)]="asignaturaCarrera.creditos" />
+    <div *ngIf="tieneAsignaturaCarrera;else mostrar">
+        <div class="form-group">
+          <div>
+          <label>Creditos</label>
+            <input name="creditos" disabled [(ngModel)]="asignaturaCarrera.creditos" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Nota de Exoneracion</label>
+          <input name="notaMinimaExonera" disabled [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
+        </div>
+        <div class="form-group">
+          <label>Nota Minima para Examen</label>
+          <input name="notaMinimaExamen" disabled [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+        </div>
+        <div class="form-group">
+          <label>Nota para Salvar Examen</label>
+          <input name="notaSalvaExamen" disabled [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
+        </div>
+        <div class="form-group">
+          <label>Nota Maxima</label>
+          <input name="notaMaxima" disabled [(ngModel)]="asignaturaCarrera.notaMaxima" />
+        </div>
     </div>
-    <div class="form-group">
-      <label>Nota de Exoneracion</label>
-      <input name="notaMinimaExonera" [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
-    </div>
-    <div class="form-group">
-      <label>Nota Minima para Examen</label>
-      <input name="notaMinimaExamen" [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
-    </div>
-    <div class="form-group">
-      <label>Nota para Salvar Examen</label>
-      <input name="notaSalvaExamen" [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
-    </div>
-    <div class="form-group">
-      <label>Nota Maxima</label>
-      <input name="notaMaxima" [(ngModel)]="asignaturaCarrera.notaMaxima" />
-    </div>
+
+    <ng-template #mostrar>
+        <div class="form-group">
+            <div>
+            <label>Creditos</label>
+              <input name="creditos"  [(ngModel)]="asignaturaCarrera.creditos" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Nota de Exoneracion</label>
+            <input name="notaMinimaExonera"  [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
+          </div>
+          <div class="form-group">
+            <label>Nota Minima para Examen</label>
+            <input name="notaMinimaExamen" [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+          </div>
+          <div class="form-group">
+            <label>Nota para Salvar Examen</label>
+            <input name="notaSalvaExamen"  [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
+          </div>
+          <div class="form-group">
+            <label>Nota Maxima</label>
+            <input name="notaMaxima"[(ngModel)]="asignaturaCarrera.notaMaxima" />
+          </div>
+        
+    </ng-template>
   </form>
   <p-footer>
     <button type="button" pButton icon="pi pi-check" (click)="onSubmit()" label="Agregar"></button>

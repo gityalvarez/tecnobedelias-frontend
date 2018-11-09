@@ -57,8 +57,15 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
   inscripcionACurso(curso:Curso){
     this.inscripcionService.inscripcionACurso(curso).subscribe(
       (data)=>{
-        alert("La inscripcion al curso fue exitosa")
-        this.cursosEstudiante.push(curso)
+        if(data.estado){
+
+          alert(data.mensaje)
+          this.cursosEstudiante.push(curso)
+
+        }
+        else{
+          alert(data.mensaje)
+        }
       },
       (error)=>{
         alert("No se pudo inscribir al curso")
@@ -69,8 +76,13 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
   desistirACurso(curso:Curso){
     this.inscripcionService.desistirACurso(curso).subscribe(
       (data)=>{
-        alert("Pudo desistir del curso correctamente")
-        this.cursosEstudiante.splice(this.cursosEstudiante.indexOf(curso),1)
+        if(data.estado){
+
+          alert(data.mensaje)
+          this.cursosEstudiante.splice(this.cursosEstudiante.indexOf(curso),1)
+        }else{
+          alert(data.mensaje)
+        }
       },
       (error)=>{
         alert("No pudo desistir del curso")

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./usuario-editar.component.css']
 })
 export class UsuarioEditarComponent implements OnInit {
-  private usuario : Usuario;
+  public usuario : Usuario;
   constructor(private usuarioService:UsuarioService, private router : Router) { }
 
   ngOnInit() {
@@ -23,12 +23,17 @@ export class UsuarioEditarComponent implements OnInit {
 
   editar(){
     this.usuarioService.modificarUsuario(this.usuario).subscribe(
-      (data)=>{console.log('pude modificar '+data)
-      this.router.navigate(['/administrador']);
-    },
-    (error)=>console.log(error)
+      (data)=>{
+        if (data.estado){
+          alert(data.mensaje)
+          this.router.navigate(['/administrador']);
+        }else{
+          alert(data.mensaje)
+        }
+      }
     )
   }
+  
 
 
 }

@@ -28,12 +28,16 @@ export class AsignaturaService {
 
   borrarAsignatura(asignatura:Asignatura):Observable<any>{
     console.log('entre al borrarAsignatura del asignaturaService con la asignatura '+asignatura.nombre);
-    return this.http.get(environment.API+'/asignatura/borrar',{params:{'asignatura': asignatura.nombre}}); 
+    return this.http.get(environment.API+'/asignatura/borrar',{params:{'asignaturaId': asignatura.id.toString()}}); 
 
   }
 
   modificarAsignatura(asignatura:Asignatura):Observable<any>{
     return this.http.post(environment.API+'/asignatura/modificar',asignatura,{params:{'asignaturaId': asignatura.id.toString()}});
+  }
+
+  getAsignaturaCarrera(asignatura :Asignatura):Observable<any>{
+    return this.http.get(environment.API+'/asignatura/obtenerasignaturacarrera',{params:{ 'asignaturaId':asignatura.id.toString()}});
   }
 
 

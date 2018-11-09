@@ -65,12 +65,12 @@ export class AsignarPreviaComponent implements OnInit {
     console.log(this.carrera.nombre, this.asignatura.nombre, asignaturaPrevia.nombre);
     this.carreraService.asignarPrevia(this.carrera, this.asignatura, asignaturaPrevia).subscribe(
       (data) => {
-        if (data) {
+        if (data['estado']) {
           console.log('agregue la asignatura  a la carrera');
-          alert('La asignatura ' + asignaturaPrevia.nombre + ' fue asignada correctamente');
+          alert(data['mensaje']);
         } else {
           console.log('no se pudo agregar la asignatura');
-          alert('La asignatura ' + asignaturaPrevia.nombre + ' no pudo ser asignada correctamente');
+          alert(data['mensaje']);
           this.previas.splice(this.previas.indexOf(asignaturaPrevia), 1);
           this.previasPosibles.push(asignaturaPrevia);
         }
@@ -83,12 +83,12 @@ export class AsignarPreviaComponent implements OnInit {
     console.log(this.carrera.nombre, this.asignatura.nombre, asignaturaPrevia.nombre);
     this.carreraService.desasignarPrevia(this.carrera, this.asignatura, asignaturaPrevia).subscribe(
       (data) => {
-        if (data) {
+        if (data['estado']) {
           console.log('elimine la asignatura  a la carrera');
-          alert('La asignatura ' + asignaturaPrevia.nombre + ' fue desasignada correctamente');
+          alert(data['mensaje']);
         } else {
           console.log('no se pudo agregar la asignatura');
-          alert('La asignatura ' + asignaturaPrevia.nombre + ' no pudo ser desasignada correctamente');
+          alert(data['mensaje']);
           this.previasPosibles.splice(this.previasPosibles.indexOf(asignaturaPrevia), 1);
           this.previas.push(asignaturaPrevia);
         }

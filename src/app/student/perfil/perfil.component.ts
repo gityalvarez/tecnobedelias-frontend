@@ -59,8 +59,12 @@ export class PerfilComponent implements OnInit {
         this.estudiante.foto = reader.result.toString();
       }
     }
-  }
 
+  }
+  
+  onSubmit(){
+
+  }
 
 
 
