@@ -4,6 +4,7 @@ import { Asignatura } from 'src/app/_models/Asignatura';
 import { AsignaturaService } from 'src/app/_services/asignatura.service';
 import { Router } from '@angular/router';
 import {CheckboxModule} from 'primeng/checkbox';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-asignatura-form',
@@ -14,6 +15,8 @@ export class AsignaturaFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   public asignatura:Asignatura;
+  msgs: Message[] = [];
+
 
   constructor(private formBuilder:FormBuilder,private asignaturaService:AsignaturaService, private router:Router) {
     this.asignatura= new Asignatura();
@@ -49,11 +52,15 @@ export class AsignaturaFormComponent implements OnInit {
     this.asignaturaService.agregarAsignatura(this.asignatura).subscribe(
       (data)=>{
         if(data.estado){
-          alert(data.mensaje)
-          console.log(this.asignatura);
+          //alert(data.mensaje)
+          //console.log(this.asignatura);
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
           this.router.navigate(['director']);
         }else{
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
         }
       }
     )

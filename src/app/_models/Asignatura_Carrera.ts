@@ -3,6 +3,7 @@ import { Asignatura } from "./Asignatura";
 
 export class Asignatura_Carrera{
 
+    id:number;
     carrera:Carrera;
     asignatura:Asignatura;
     creditos:number;

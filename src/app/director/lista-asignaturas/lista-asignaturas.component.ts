@@ -3,6 +3,7 @@ import { Asignatura } from 'src/app/_models/Asignatura';
 import { AsignaturaService } from 'src/app/_services/asignatura.service';
 import { Router } from '@angular/router';
 import { TokenStorage } from 'src/app/_helpers/TokenStorage';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-lista-asignaturas',
@@ -13,6 +14,8 @@ export class ListaAsignaturasComponent implements OnInit {
 
   public asignaturas:Asignatura[];
   public esDirector:boolean = false;
+  msgs: Message[] = [];
+
 
   constructor(private asignaturaService:AsignaturaService,private router:Router,private tokenStorage:TokenStorage) { }
 
@@ -39,10 +42,14 @@ export class ListaAsignaturasComponent implements OnInit {
       this.asignaturaService.borrarAsignatura(asignatura).subscribe(
         (data)=>{
           if(data.estado){
-            alert(data.mensaje);
+            //alert(data.mensaje);
+            this.msgs = [];
+            this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje });
             this.asignaturas.splice(this.asignaturas.indexOf(asignatura),1);           
           }else{
-            alert(data.mensaje);
+            //alert(data.mensaje);
+            this.msgs = [];
+            this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje });
           }
         }
       );

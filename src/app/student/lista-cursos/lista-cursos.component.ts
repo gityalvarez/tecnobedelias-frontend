@@ -9,6 +9,7 @@ import { Carrera } from 'src/app/_models/Carrera';
 import { Asignatura } from 'src/app/_models/Asignatura';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { hypenatePropsObject } from '@angular/animations/browser/src/render/shared';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -30,6 +31,8 @@ cursosEstudiante:Curso[];
 customClass: string = 'panel-success';
 fecha = Date.now()
 hoy = new Date(this.fecha).toISOString();
+msgs: Message[] = [];
+
 
 constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
                      private usuarioService:UsuarioService,private tokenStorage:TokenStorage,
@@ -59,12 +62,18 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
       (data)=>{
         if(data.estado){
 
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+
           this.cursosEstudiante.push(curso)
 
         }
         else{
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
+
         }
       },
       (error)=>{
@@ -78,10 +87,16 @@ constructor(private inscripcionService : InscripcionService,private carreraServi
       (data)=>{
         if(data.estado){
 
-          alert(data.mensaje)
+          //alert(data.mensaje)
           this.cursosEstudiante.splice(this.cursosEstudiante.indexOf(curso),1)
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+
         }else{
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
+
         }
       },
       (error)=>{

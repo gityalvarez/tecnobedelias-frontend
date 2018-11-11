@@ -6,6 +6,8 @@ import { Usuario } from '../../_models/Usuario';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap';
 import { Rol } from '../../_models/Rol';
 import {FileUploadModule} from 'primeng/fileupload';
+import { Message } from 'primeng/components/common/api';
+
 
 
 
@@ -22,6 +24,8 @@ export class UsuarioFormComponent implements OnInit {
   roles = ["ADMINISTRADOR","DIRECTOR","FUNCIONARIO","ESTUDIANTE"];
   public rol:Rol;
   uploadedFiles: any[] = [];
+  msgs: Message[] = [];
+
   constructor(private formBuilder: FormBuilder,private usuarioService:UsuarioService,private router: Router) {
     this.usuario = new Usuario();
     this.rol= new Rol();
@@ -77,11 +81,14 @@ export class UsuarioFormComponent implements OnInit {
       (data)=>{
         console.log(data)
         if (data.estado){
-          alert(data.mensaje);
+          //alert(data.mensaje);
+          this.msgs = [];
+            this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
           this.router.navigate(['administrador']);
         }else{
-          alert(data.mensaje);
-          
+          //alert(data.mensaje);
+          this.msgs = [];
+            this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
         }
       }
     )

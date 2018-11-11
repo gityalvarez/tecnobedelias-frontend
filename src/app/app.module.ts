@@ -56,6 +56,7 @@ import { PerfilComponent } from './student/perfil/perfil.component';
 import { AsignaturaEditarComponent } from './director/asignatura-editar/asignatura-editar.component';
 import { CarreraEditarComponent } from './director/carrera-editar/carrera-editar.component';
 import { UsuarioEditarComponent } from './admin/usuario-editar/usuario-editar.component';
+import {GrowlModule} from 'primeng/growl';
 
 
 
@@ -111,7 +112,8 @@ import { UsuarioEditarComponent } from './admin/usuario-editar/usuario-editar.co
     FullCalendarModule,
     DropdownModule,
     CheckboxModule,
-    NgbModule
+    NgbModule,
+    GrowlModule
 
   ],
   providers: [

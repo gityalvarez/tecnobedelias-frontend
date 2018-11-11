@@ -3,6 +3,8 @@ import { Papa } from 'ngx-papaparse';
 import { Usuario } from 'src/app/_models/Usuario';
 import { UsuarioService } from 'src/app/_services/usuario.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Message } from 'primeng/components/common/api';
+
 
 @Component({
   selector: 'app-cargar-usuarios',
@@ -18,8 +20,10 @@ export class CargarUsuariosComponent implements OnInit {
   usuarios:Usuario[];
   resultado;
   modalRef: BsModalRef;
+  msgs: Message[] = [];
 
-  constructor(private papa: Papa, private usuarioService: UsuarioService,private modalService: BsModalService) {}
+  constructor(private papa: Papa, private usuarioService: UsuarioService,
+    private modalService: BsModalService) {}
 
 
   ngOnInit() {  
@@ -77,10 +81,17 @@ export class CargarUsuariosComponent implements OnInit {
       usuario.fechaNacimiento = new Date(element[6])
       this.usuarioService.agregarUsuario(element[7],usuario).subscribe(
         (data)=>{
-          if(data){
-            console.log("agregué al usuario "+usuario.username)
+          if(data.estado){
+            //console.log(data.mensaje)
+            //alert(data.mensaje)
+            this.msgs = [];
+            this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+            
           }else{
-            console.log("No se pudo  agregar al usuario "+usuario.username)
+            //console.log(data.mensaje)
+            //alert(data.mensaje)
+            this.msgs = [];
+            this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
           }
         }
       );

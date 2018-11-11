@@ -3,6 +3,7 @@ import { Usuario } from '../../_models/Usuario';
 import { UsuarioService } from '../../_services/usuario.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import {Message} from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 export class ListaUsuariosComponent implements OnInit {
   public usuarios:Usuario[];
   public searchString : string;
+  msgs: Message[] = [];
 
 
   constructor(private usuarioService:UsuarioService, private router:Router) { }
@@ -39,10 +41,14 @@ export class ListaUsuariosComponent implements OnInit {
       this.usuarioService.borrarUsuario(usuario).subscribe(
         (data)=>{
           if(data.estado){
-            alert(data.mensaje)            
+            //alert(data.mensaje)   
             this.usuarios.splice(this.usuarios.indexOf(usuario),1);
+            this.msgs = [];
+            this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
           }else{
-            alert(data.mensaje)
+            //alert(data.mensaje)
+            this.msgs = [];
+            this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
           }
 
         }

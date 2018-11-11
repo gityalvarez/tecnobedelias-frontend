@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CarreraService } from 'src/app/_services/carrera.service';
 import { Router } from '@angular/router';
 import { Carrera } from 'src/app/_models/Carrera';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-carrera-form',
@@ -15,6 +16,8 @@ export class CarreraFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   public carrera:Carrera;
+  msgs: Message[] = [];
+
   
 
   constructor(private formBuilder:FormBuilder,private carreraService:CarreraService, private router:Router) { 
@@ -51,10 +54,16 @@ export class CarreraFormComponent implements OnInit {
     this.carreraService.agregarCarrera(this.carrera).subscribe(
       (data)=>{
         if (data.estado){
-          alert(data.mensaje);
+          //alert(data.mensaje);
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+
           this.router.navigate(['director']);
         }else{
-          alert(data.mensaje);
+          //alert(data.mensaje);
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
+
         }
       }
     )

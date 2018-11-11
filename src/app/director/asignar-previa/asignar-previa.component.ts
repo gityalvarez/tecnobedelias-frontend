@@ -5,6 +5,7 @@ import { Asignatura } from 'src/app/_models/Asignatura';
 import { CarreraService } from 'src/app/_services/carrera.service';
 import { AsignaturaService } from 'src/app/_services/asignatura.service';
 import { Asignatura_Carrera } from 'src/app/_models/Asignatura_Carrera';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-asignar-previa',
@@ -19,6 +20,7 @@ export class AsignarPreviaComponent implements OnInit {
   asignaturas: Asignatura[];
   previas: Asignatura[];
   previasPosibles: Asignatura[];
+  msgs: Message[] = [];
 
 
   constructor(private carreraService: CarreraService, private asignaturaService: AsignaturaService) { }
@@ -67,10 +69,14 @@ export class AsignarPreviaComponent implements OnInit {
       (data) => {
         if (data['estado']) {
           console.log('agregue la asignatura  a la carrera');
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data['mensaje'] });
         } else {
           console.log('no se pudo agregar la asignatura');
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data['mensaje'] });
           this.previas.splice(this.previas.indexOf(asignaturaPrevia), 1);
           this.previasPosibles.push(asignaturaPrevia);
         }
@@ -85,10 +91,14 @@ export class AsignarPreviaComponent implements OnInit {
       (data) => {
         if (data['estado']) {
           console.log('elimine la asignatura  a la carrera');
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data['mensaje'] });
         } else {
           console.log('no se pudo agregar la asignatura');
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data['mensaje'] });
           this.previasPosibles.splice(this.previasPosibles.indexOf(asignaturaPrevia), 1);
           this.previas.push(asignaturaPrevia);
         }

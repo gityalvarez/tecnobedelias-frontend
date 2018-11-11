@@ -7,6 +7,7 @@ import { Examen } from 'src/app/_models/Examen';
 import { Asignatura } from 'src/app/_models/Asignatura';
 import { Carrera } from 'src/app/_models/Carrera';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-lista-examenes',
@@ -28,6 +29,8 @@ export class ListaExamenesComponent implements OnInit {
   examenesEstudiante:Examen[];
   fecha = Date.now()
   hoy = new Date(this.fecha).toISOString();
+  msgs: Message[] = [];
+
 
   constructor(private inscripcionService : InscripcionService,private carreraService : CarreraService,
     private usuarioService:UsuarioService,private tokenStorage:TokenStorage,
@@ -56,10 +59,15 @@ export class ListaExamenesComponent implements OnInit {
       (data)=>{
         if (data.estado){
 
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+
           this.examenesEstudiante.push(examen)
         }else{
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
         }
       },
       (error)=>{
@@ -68,19 +76,25 @@ export class ListaExamenesComponent implements OnInit {
     )
   }
 
-  desistirACurso(examen:Examen){
+  desistirAExamen(examen:Examen){
     this.inscripcionService.desistirAExamen(examen).subscribe(
       (data)=>{
         if(data.estado){
 
-          alert(data.mensaje)
+          //alert(data.mensaje)
           this.examenesEstudiante.splice(this.examenesEstudiante.indexOf(examen),1)
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+
         }else{
-          alert(data.mensaje)
+          //alert(data.mensaje)
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
+
         }
       },
       (error)=>{
-        alert("No pudo desistir del curso")
+        alert("No pudo desistir del examen")
       }
     )
   }

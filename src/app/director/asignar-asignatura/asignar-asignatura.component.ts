@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { Asignatura_Carrera } from 'src/app/_models/Asignatura_Carrera';
 import { DialogModule } from 'primeng/dialog';
+import { Message } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-asignar-asignatura',
@@ -25,6 +26,7 @@ export class AsignarAsignaturaComponent implements OnInit {
   asignaturaCarrera: Asignatura_Carrera;
   submit: boolean;
   tieneAsignaturaCarrera : boolean = false;
+  msgs: Message[] = [];
 
   // Pruebas para Deshabilitar tecla Control
   /*
@@ -80,10 +82,14 @@ export class AsignarAsignaturaComponent implements OnInit {
       (data) => {
         if (data['estado']) {
           console.log('agregue la asignatura  a la carrera');
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data['mensaje']});
 
         } else {
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data['mensaje']});
         }
       }
     );
@@ -95,11 +101,15 @@ export class AsignarAsignaturaComponent implements OnInit {
       (data) => {
         if (data['estado']) {
           
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Exito', detail:data['mensaje']});
 
         } else {
           console.log('no se pudo eliminar la asignatura  a la carrera');
-          alert(data['mensaje']);
+          //alert(data['mensaje']);
+          this.msgs = [];
+          this.msgs.push({severity:'error', summary:'Error', detail:data['mensaje'] });
           this.asignaturasFaltantes.splice(this.asignaturasFaltantes.indexOf(asignatura), 1);
           this.asignaturas.push(asignatura);
         }
@@ -115,6 +125,7 @@ export class AsignarAsignaturaComponent implements OnInit {
       (data)=>{
         if (data){
           this.asignaturaCarrera = data
+          this.asignaturaCarrera.id = 0
           this.tieneAsignaturaCarrera = true
           console.log(this.tieneAsignaturaCarrera)
         }
