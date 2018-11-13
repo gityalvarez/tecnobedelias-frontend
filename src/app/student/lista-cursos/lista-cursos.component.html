@@ -5,6 +5,7 @@
       <accordion-group heading="{{carrera.nombre}}">
           <accordion [closeOthers]="true">
           <div class="center" *ngFor="let asignaturaCarrera of carrera.asignaturaCarrera">
+            <div *ngIf="asignaturaCarrera.asignatura.cursos[0]">
               <accordion-group heading="{{asignaturaCarrera.asignatura.nombre}}">                  
                   <div class="container" >
                       <table class="table table-striped table-responsive">
@@ -67,6 +68,7 @@
                       </table>
                   </div>           
               </accordion-group>
+              </div>
             </div>
             </accordion>
         </accordion-group>

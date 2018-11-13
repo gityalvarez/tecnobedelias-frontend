@@ -88,6 +88,7 @@ export class ListaCarrerasComponent implements OnInit {
             this.msgs = [];
             this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje });            
             this.carrerasEstudiante.push(carrera)
+            //this.router.navigate(['estudiante'])
           }else{
             //alert(data.mensaje);
             this.msgs = [];
@@ -108,6 +109,8 @@ export class ListaCarrerasComponent implements OnInit {
             this.msgs = [];
             this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje });
             this.carrerasEstudiante.splice(this.carrerasEstudiante.indexOf(carrera),1);
+            //this.router.navigate(['estudiante'])
+
           }else{
             //alert(data.mensaje);
             this.msgs = [];

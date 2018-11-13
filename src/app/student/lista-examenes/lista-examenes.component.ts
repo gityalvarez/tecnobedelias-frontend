@@ -67,7 +67,7 @@ export class ListaExamenesComponent implements OnInit {
         }else{
           //alert(data.mensaje)
           this.msgs = [];
-          this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje});
+          this.msgs.push({severity:'error', summary:'Error', detail:data.mensaje});
         }
       },
       (error)=>{

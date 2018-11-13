@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventService } from './event.service';
@@ -10,13 +10,13 @@ import { getRenderedText } from '@angular/core/src/render3';
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.css']
 })
-export class CalendarioComponent implements AfterViewInit {
+export class CalendarioComponent implements OnInit {
   calendarOptions: Options;
   displayEvent: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   constructor(protected eventService: EventService, private inscripcionService: InscripcionService) { }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.inscripcionService.consultaCursos().subscribe(
       (cursos) => {
         this.inscripcionService.consultaExamen().subscribe(
@@ -135,7 +135,7 @@ export class CalendarioComponent implements AfterViewInit {
         );
       }
     );
-    setTimeout(() => { this.ucCalendar.fullCalendar('changeView', 'week'); }, 1000);
+    //setTimeout(() => { this.ucCalendar.fullCalendar('changeView', 'week'); }, 1000);
   }
   onChange() {
     // setTimeout(() => { this.ucCalendar.fullCalendar('changeView', 'week'); }, 1000);
