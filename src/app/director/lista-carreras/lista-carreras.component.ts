@@ -26,7 +26,7 @@ export class ListaCarrerasComponent implements OnInit {
   //public largo:number;
 
   constructor(private router:Router,private carreraService:CarreraService, private tokenStorage : TokenStorage,
-              private inscripcionService:InscripcionService, private usuarioService:UsuarioService ) { }
+              private inscripcionService:InscripcionService, private usuarioService:UsuarioService) { }
 
   ngOnInit() {
     this.esDirector = (this.tokenStorage.getRole() == "director");
@@ -88,7 +88,7 @@ export class ListaCarrerasComponent implements OnInit {
             this.msgs = [];
             this.msgs.push({severity:'success', summary:'Exito', detail:data.mensaje });            
             this.carrerasEstudiante.push(carrera)
-            //this.router.navigate(['estudiante'])
+            
           }else{
             //alert(data.mensaje);
             this.msgs = [];

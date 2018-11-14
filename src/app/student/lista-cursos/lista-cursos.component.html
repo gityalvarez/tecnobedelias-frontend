@@ -24,7 +24,7 @@
                                   <td>{{curso.semestre}}</td>
                                   <td>{{curso.fechaInicio | date }}</td>
                                   <td>{{curso.fechaFin | date}}</td>
-                                  <div *ngIf="!(hoy > curso.fechaFin);else calificaciones">
+                                  <div *ngIf="(!curso.cursoEstudiante[0] || (curso.cursoEstudiante[0]) && (curso.cursoEstudiante[0].nota == -1 ));else calificaciones">
                                       <div *ngIf="!(estaInscripto(curso)); else desistir">
                                           <td><button class="btn btn-primary" (click)="inscripcionACurso(curso)" confirm="Seguro que desea inscribirse?" >Inscribir</button></td>
                                       </div>

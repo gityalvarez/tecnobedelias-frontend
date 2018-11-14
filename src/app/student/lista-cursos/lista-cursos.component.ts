@@ -30,7 +30,7 @@ estudiante:Object;
 cursosEstudiante:Curso[];
 customClass: string = 'panel-success';
 fecha = Date.now()
-hoy = new Date(this.fecha).toISOString();
+hoy = new Date(this.fecha +864E5*5).toISOString();
 msgs: Message[] = [];
 
 
