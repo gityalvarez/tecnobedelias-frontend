@@ -21,7 +21,7 @@ export class UsuarioFormComponent implements OnInit {
   submitted = false;
   public usuario:Usuario;
   public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
-  roles = ["ADMINISTRADOR","DIRECTOR","FUNCIONARIO","ESTUDIANTE"];
+  roles = ["DIRECTOR","FUNCIONARIO","ESTUDIANTE"];
   public rol:Rol;
   uploadedFiles: any[] = [];
   msgs: Message[] = [];

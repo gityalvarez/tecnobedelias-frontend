@@ -1,5 +1,6 @@
 <div class="container">
     <p-growl [(value)]="msgs"></p-growl>
+    <input type="text" class="form-control" name="searchString" placeholder="Buscar..." [(ngModel)]="searchString">
 
   <table class="table table-striped">
     <thead>
@@ -9,7 +10,8 @@
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let carrera of carreras">
+      
+      <tr *ngFor="let carrera of carreras | filter : ['nombre','descripcion'] : searchString; let i = index">
 
         <td>{{carrera.nombre}}</td>
         <td>{{carrera.descripcion}}</td>

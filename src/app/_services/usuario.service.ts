@@ -39,6 +39,11 @@ export class UsuarioService {
     return this.http.get(environment.API+'/usuario/reset',{params:{'resetToken': resetToken,'password':password}});
   }
 
+  modificarPassword(passwordActual,password,passwordConfirm):Observable<any>{
+    console.log('entre al cambiarPassword con el password '+password);
+    return this.http.get(environment.API+'/usuario/cambiarpassword',{params:{'actualpassword': passwordActual,'newpassword':password, 'newpasswordrepeat':passwordConfirm}});
+  }
+
   set(usuario:Usuario){
     this.usuario=usuario;
   }

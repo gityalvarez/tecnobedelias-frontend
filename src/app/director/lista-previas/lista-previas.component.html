@@ -1,0 +1,17 @@
+<accordion [closeOthers]="true">
+
+  <div *ngFor="let carrera of carreras">
+    <accordion-group heading="{{carrera.nombre}}" (isOpenChange)='cargarAsignaturas(carrera)'>
+      <accordion [closeOthers]="true">
+        <div *ngFor="let asignatura of asignaturas;let i = index">
+          <accordion-group heading="{{asignatura.nombre}}" (isOpenChange)='cargarPrevias(asignatura)'>
+            <div *ngFor="let previas of previas">
+              {{previas.nombre}}
+
+            </div>
+          </accordion-group>
+        </div>
+      </accordion>
+    </accordion-group>
+  </div>
+</accordion>

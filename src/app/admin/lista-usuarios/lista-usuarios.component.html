@@ -1,7 +1,13 @@
 <div class="container">
     <p-growl [(value)]="msgs"></p-growl>
+    <div class="row">
+      <input  type="text" class="form-control col-sm-8" name="searchString" placeholder="Buscar..." [(ngModel)]="searchString">
+      <p-toggleButton [(ngModel)]="estudiantes" class="col-sm-4"  (onChange)="listarEstudiantes()"
+      onLabel="Todos" offLabel="Estudiantes"></p-toggleButton>
 
-  <input type="text" class="form-control" name="searchString" placeholder="Buscar..." [(ngModel)]="searchString">
+    </div>
+
+    
 
   <table class="table table-striped">
     <thead>

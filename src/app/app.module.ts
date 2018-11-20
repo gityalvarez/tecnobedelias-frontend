@@ -57,6 +57,9 @@ import { AsignaturaEditarComponent } from './director/asignatura-editar/asignatu
 import { CarreraEditarComponent } from './director/carrera-editar/carrera-editar.component';
 import { UsuarioEditarComponent } from './admin/usuario-editar/usuario-editar.component';
 import {GrowlModule} from 'primeng/growl';
+import {ToggleButtonModule} from 'primeng/togglebutton';
+import { ListaPreviasComponent } from './director/lista-previas/lista-previas.component';
+import { CambiarPasswordComponent } from './shared/cambiar-password/cambiar-password.component';
 
 
 
@@ -90,7 +93,9 @@ import {GrowlModule} from 'primeng/growl';
     PerfilComponent,
     AsignaturaEditarComponent,
     CarreraEditarComponent,
-    UsuarioEditarComponent
+    UsuarioEditarComponent,
+    ListaPreviasComponent,
+    CambiarPasswordComponent
 
   ],
   imports: [
@@ -113,7 +118,8 @@ import {GrowlModule} from 'primeng/growl';
     DropdownModule,
     CheckboxModule,
     NgbModule,
-    GrowlModule
+    GrowlModule,
+    ToggleButtonModule
 
   ],
   providers: [

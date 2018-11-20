@@ -4,6 +4,7 @@ import { UsuarioService } from '../../_services/usuario.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {Message} from 'primeng/components/common/api';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -14,6 +15,7 @@ export class ListaUsuariosComponent implements OnInit {
   public usuarios:Usuario[];
   public searchString : string;
   msgs: Message[] = [];
+  estudiantes : boolean = false
 
 
   constructor(private usuarioService:UsuarioService, private router:Router) { }
@@ -61,5 +63,29 @@ export class ListaUsuariosComponent implements OnInit {
     this.usuarioService.set(usuario);
     this.router.navigate(['administrador/usuario-form']);
   }  
+
+
+  
+  listarEstudiantes(){
+    if (this.estudiantes){
+      let usuariosArray = new Array
+      this.usuarios.forEach(
+        usuario=>{
+          if (usuario.roles[0].nombre == "ESTUDIANTE"){
+            usuariosArray.push(usuario)
+          }
+        }
+      )
+      this.usuarios = usuariosArray;
+    }else{
+      this.usuarioService.getUsuarios().subscribe(
+        (usuarios)=>{
+          this.usuarios=usuarios;
+        },(error)=>{
+          console.log(error);
+        },
+      );     
+    }
+  }
 
 }
