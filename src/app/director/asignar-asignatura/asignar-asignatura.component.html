@@ -29,13 +29,19 @@
           <label>Nota de Exoneracion</label>
           <input name="notaMinimaExonera" disabled [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
         </div>
-        <div class="form-group">
-          <label>Nota Minima para Examen</label>
-          <input name="notaMinimaExamen" disabled [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+        <div *ngIf="!taller">
+          <div class="form-group">
+            <label>Nota Minima para Examen</label>
+            <input name="notaMinimaExamen" disabled [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+          </div>
+
         </div>
-        <div class="form-group">
-          <label>Nota para Salvar Examen</label>
-          <input name="notaSalvaExamen" disabled [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
+        <div *ngIf="!taller">
+          <div class="form-group">
+            <label>Nota para Salvar Examen</label>
+            <input name="notaSalvaExamen" disabled [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
+          </div>
+
         </div>
         <div class="form-group">
           <label>Nota Maxima</label>
@@ -54,13 +60,19 @@
             <label>Nota de Exoneracion</label>
             <input name="notaMinimaExonera"  [(ngModel)]="asignaturaCarrera.notaMinimaExonera" />
           </div>
-          <div class="form-group">
-            <label>Nota Minima para Examen</label>
-            <input name="notaMinimaExamen" [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+          <div *ngIf="!taller">
+            <div class="form-group">
+              <label>Nota Minima para Examen</label>
+              <input name="notaMinimaExamen" [(ngModel)]="asignaturaCarrera.notaMinimaExamen" />
+            </div>
+          
           </div>
-          <div class="form-group">
+
+          <div *ngIf="!taller">
+          <div class="form-group">            
             <label>Nota para Salvar Examen</label>
             <input name="notaSalvaExamen"  [(ngModel)]="asignaturaCarrera.notaSalvaExamen" />
+          </div>
           </div>
           <div class="form-group">
             <label>Nota Maxima</label>

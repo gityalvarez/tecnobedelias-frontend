@@ -55,7 +55,6 @@ const routes: Routes = [
   { path: 'director/asignatura-editar', component: AsignaturaEditarComponent},
   { path: 'director/carrera-editar', component: CarreraEditarComponent},
   { path: 'administrador/usuario-editar', component: UsuarioEditarComponent},
-  { path: 'funcionario/cambiar-password', component: CambiarPasswordComponent},
   { path: 'director/cambiar-password', component: CambiarPasswordComponent},
   { path: 'estudiante/cambiar-password', component: CambiarPasswordComponent},
   { path: 'administrador/cambiar-password', component: CambiarPasswordComponent},

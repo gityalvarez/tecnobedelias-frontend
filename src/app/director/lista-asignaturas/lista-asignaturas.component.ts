@@ -15,6 +15,7 @@ export class ListaAsignaturasComponent implements OnInit {
   public asignaturas:Asignatura[];
   public esDirector:boolean = false;
   msgs: Message[] = [];
+  public searchString:string;
 
 
   constructor(private asignaturaService:AsignaturaService,private router:Router,private tokenStorage:TokenStorage) { }

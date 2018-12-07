@@ -21,6 +21,7 @@ export class ListaCarrerasComponent implements OnInit {
   public username: string;
   public carrerasEstudiante : Carrera[];
   msgs: Message[] = [];
+  public searchString:string;
 
   //public estudiante: Usuario;
   //public largo:number;

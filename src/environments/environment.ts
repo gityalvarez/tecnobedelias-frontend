@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:8080'
+  API: 'http://ec2-3-16-143-114.us-east-2.compute.amazonaws.com:8080/tecnobedelias'
 };
 
 /*

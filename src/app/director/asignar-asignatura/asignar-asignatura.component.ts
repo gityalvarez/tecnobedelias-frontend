@@ -27,6 +27,7 @@ export class AsignarAsignaturaComponent implements OnInit {
   submit: boolean;
   tieneAsignaturaCarrera : boolean = false;
   msgs: Message[] = [];
+  taller : boolean = false;
 
   // Pruebas para Deshabilitar tecla Control
   /*
@@ -120,6 +121,7 @@ export class AsignarAsignaturaComponent implements OnInit {
   onMoveToSource(event) {
     console.log('entre al onMoveToSource con ' + this.carrera.nombre + ' y asignatura ' + event.items[0]);
     this.asignatura = event.items[0];
+    this.taller = this.asignatura.taller
     //si existe una asignaturaCarrera para esa asignatura traigo los datos
     this.asignaturaService.getAsignaturaCarrera(this.asignatura).subscribe(
       (data)=>{
